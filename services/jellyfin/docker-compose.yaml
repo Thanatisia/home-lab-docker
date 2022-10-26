@@ -1,0 +1,22 @@
+version: "3"
+
+networks:
+    default:
+
+services:
+    # Jellyfin Media Server
+    jellyfin:
+        image: jellyfin/jellyfin
+        container_name: jellyfin
+        # user: $$(id -u):$$(id -g)
+        # user: "${UID}:${GID}"
+        network_mode: "host"
+        volumes:
+            - "$PWD/jellyfin/config:/config"
+            - "$PWD/jellyfin/cache:/cache"
+            - "$PWD/jellyfin/media:/media"
+            - "$PWD/jellyfin/media2:/media2:ro"
+        restart: "unless-stopped"
+        # environment:
+            #Optional - Alternative address used for autodiscovery
+            #- JELLYFIN_PublishedServerUrl=http://example.com

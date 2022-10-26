@@ -1,0 +1,43 @@
+version: "3"
+
+networks:
+    default:
+
+services:
+    # Samba File Server
+    sambafs:
+        # Set custom image name
+        # Set Custom Container Name (same as --name)
+        container_name: "sambafs"
+        # Create docker image using the local Dockerfile build
+        build: ./samba
+        # Set custom image name
+        image: sambafs-debian
+        # Restart container (same as --restart)
+        restart: unless-stopped
+        # Set Network to use
+        networks:
+            - default
+        # Set Volumes to share between host and container (same as -v)
+        volumes:
+            # "host-system-path:container-path"
+            # [Examples]
+            # - "$PWD/samba/config/smb.conf:/etc/samba/smb.conf"
+            # - "$PWD/samba/config:/etc/samba" # Samba Configuration File
+            # - "$PWD/shares:/media/NAS/shares"
+            # - "$PWD/shares/public:/media/NAS/shares/public"
+            # - "$PWD/shares/home:/media/NAS/shares/homes"
+            - "$PWD/samba/config/:/etc/samba"
+            - "$PWD/:/mnt/docker/pwd"
+        # Expose ports/port forwarding from host system port to container port (same as -p)
+        ports:
+            - "137:137/udp"
+            - "138:138/udp"
+            - "139:139/tcp"
+            - "445:445/tcp" # For Samba file share
+        # Set Environment Variables (same as -e)
+        environment:
+            TZ: 'Asia/Singapore' # This is the timezone
+        tty: true
+        command: "service smbd restart"
+
