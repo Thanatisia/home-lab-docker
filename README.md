@@ -17,11 +17,15 @@ just joking, I am just playing around with containerizing my self-host setup (tr
 
 ### Quickstart Guide
 #### Folders
-+ files : Contains various combination/types of services and/or groups of services together based on the combinations in a single docker-compose environment. 
++ files
+    ```
+    Contains various combination/types of services and/or groups of services together based on the combinations in a single docker-compose environment. 
     - Examples
-	+ NAS File Server : Samba, Jellyfin
-	+ Network Server : ipsec vpn server, pihole
-+ production : This is where all the production-ready and tested docker-compose environment as well as Dockerfiles and dependencies are stored. 
+	    + NAS File Server : Samba, Jellyfin
+	    + Network Server : ipsec vpn server, pihole
+    ```
++ production
+    ```This is where all the production-ready and tested docker-compose environment as well as Dockerfiles and dependencies are stored. 
     - This folder is essentially a plug-and-play (for me, at least) docker-compose environment template for self-hosting with either ARM(64)v7 and above devices, as well as general AMD64/x86 devices.
         + Similar to a dotfile repository, this is so that I can easily deploy these environments into my server production with just a single clone.
     - I have already tested on my ArchLinux Virtual Machine docker Testbench, 
@@ -31,9 +35,13 @@ just joking, I am just playing around with containerizing my self-host setup (tr
         + The files you see here have all been sanitized such that sensitive information in files, environment variables are all replaced with skeleton text to explain what to input, and are all safe for referral and usage as a template.
         + Always ensure that security and private information such as public IP address (if any), usernames and passwords, credentials etc are erased from your open source configs if you are pushing it to any remote git repository server.
         + Always Remember to read the code before deployment.
-    - Feel free to build and startup the docker-compose environment directly
-+ services : This folder contains subfolders for every individual services that holds Dockerfiles, docker-compose environment files and dependencies to startup that specific service individually. 
-    - Note: This folder is entirely surrounding starting up the service via docker, thus, please refer to the official documentation and/or (shameless plug starts) my guides for that server utility at [SharedSpace](https://github.com/Thanatisia/SharedSpace) if available (shameless plug end.) if you want to install the system on bare metal.
+    ```
++ services
+    ```
+    This folder contains subfolders for every individual services that holds Dockerfiles, docker-compose environment files and dependencies to startup that specific service individually. 
+    ```
+    - Note: 
+        + This folder is entirely surrounding starting up the service via docker, thus, please refer to the official documentation and/or (shameless plug starts) my guides for that server utility at [SharedSpace](https://github.com/Thanatisia/SharedSpace) if available (shameless plug end.) if you want to install the system on bare metal.
 
 ## Setup
 ### Pre-Requisites
