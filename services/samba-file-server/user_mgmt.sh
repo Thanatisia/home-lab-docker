@@ -5,7 +5,6 @@ User Management for Alpine Linux
 declare -A users=(
     # [Username]="Password"
     [admin]=Password
-    [asura]=@rchsur@
 )
 
 for username in "${!users[@]}"; do

@@ -4,8 +4,7 @@ User Management for Alpine Linux
 
 declare -A users=(
     # [Username]="Password"
-    [admin]=[Your user's smbpasswd/passwd username here]
-    [asura]=[Your user's smbpasswd/passwd password here]
+    [admin]=[Your user's smbpasswd/passwd password here]
 )
 
 for username in "${!users[@]}"; do
