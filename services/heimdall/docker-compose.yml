@@ -1,0 +1,33 @@
+version: "3"
+
+volumes:
+    heimdall_config:
+        driver: local
+        driver_opts:
+            type: 'none'
+            o: 'bind'
+            device: "$PWD/heimdall/config"
+
+services:
+    # Dashboard
+    heimdall:
+        image: linuxserver/heimdall
+        container_name: heimdall
+        environment:
+            - PUID=1000
+            - PGID=1000
+            # Replace with your timezone 
+            # format: Region/City
+            # refer to /usr/share/zoneinfo/Region/City)
+            # - [Region/City] 
+        volumes:
+            # - heimdall_config:/config
+            - "$PWD/config:/config"
+        ports:
+            # Port forwarding from host system port to container port
+            # [host-port]:[container-port]
+            # - 80:80 # for HTTP 
+            # - 443:443 # for HTTPS; optional
+            - 8080:80
+        restart: unless-stopped
+

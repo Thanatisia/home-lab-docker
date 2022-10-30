@@ -1,0 +1,18 @@
+version: "3"
+services:
+    nginx-proxy-manager:
+        image: 'jc21/nginx-proxy-manager:latest'
+        container_name: "nginx-proxy-manager"
+        restart: "unless-stopped"
+        ports:
+            # Defaults
+            # - '80:80'
+            # - '81:81'
+            # - '443:443'
+            - "80:80"
+            - "81:81"
+            - "443:443"
+        volumes:
+            - "$PWD/nginx/proxy-manager/data:/data"
+
+       

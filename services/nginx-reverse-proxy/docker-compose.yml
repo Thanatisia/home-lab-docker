@@ -1,0 +1,25 @@
+version: "3"
+
+networks:
+    # Named networks that allows containers to communicate with each other
+    ## - typically containers are isolated to their own networks
+    ## - set this network to various containers and they can communicate to everyone in that assigned network space
+    example1:
+        # Set a external network
+        name: example1_default
+
+services:
+    reverse-proxy:
+        build: ./nginx
+        container_name: "reverse-proxy-nginx"
+        networks:
+            - example1
+        volumes:
+            - ./nginx/www:/usr/share/nginx/html
+            - "./nginx/etc/hosts:/etc/hosts"
+        ports:
+            # Port forwarding the host system's port to the container's port
+            # [host system port]:[container port]
+            - 80:80 # HTTP
+            - 443:443 # HTTPS
+

@@ -31,7 +31,7 @@ RUN rm /user_mgmt.sh
 # Samba Configs #
 #===============#
 # Copy Samba configurations
-COPY config/smb.conf /etc/samba/smb.conf
+COPY samba/config/smb.conf /etc/samba/smb.conf
 
 #================#
 # Docker Configs #
@@ -43,7 +43,7 @@ EXPOSE 139/tcp
 EXPOSE 445/tcp
 
 # Mount Volumes
-# VOLUME ["$PWD/config/smb.conf"]
+# VOLUME ["$PWD/samba/config/smb.conf"]
 
 # Start container with this command
 # ENTRYPOINT ["smbd", "--foreground", "--log-stdout", "--no-process-group"]

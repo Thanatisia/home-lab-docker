@@ -1,38 +1,46 @@
 version: "3"
 
 networks:
+    # Named networks that allows containers to communicate with each other
+    ## - typically containers are isolated to their own networks
+    ## - set this network to various containers and they can communicate to everyone in that assigned network space
     default:
+    nginx-reverse-proxy:
+        # Set a external network
+        name: nginx
 
-volumes:
-  # Named mounted volume
-  ikev2-vpn-data:
-
+# volumes:
+    ## Named mounted volume
+    # For IKEv2 VPN
+    # ikev2-vpn-data:
+    # heimdall_config:
+  
 services:
-    ### NAS File/Media Server
-    code-server:
-        # Set custom image name
-        image: codercom/code-server:latest
-        # Set Custom Container Name (same as --name)
-        container_name: "code-server"
-        # Restart container (same as --restart)
-        restart: always
-        # Set Volumes to share between host and container (same as -v)
-        volumes:
-            - "$HOME/.config:/home/coder/.config"
-            - "$PWD:/home/coder/project"
-        # Expose ports/port forwarding from host system port to container port (same as -p)
-        ports:
-            # "host system port:container port"
-            - 8080:8080
-        # Set Environment Variables (same as -e)
+    ### Utilities and Helper Services
+    # Dashboard
+    heimdall:
+        image: linuxserver/heimdall
+        container_name: heimdall
         environment:
-            - "DOCKER_USER=$USER"
-        # Set custom working directory (same as --working-dir)
-        # Please change this accordingly
-        working_dir: $HOME/Desktop/codebase
-        # Set User ID
-        # user: "$${id -u}:$${id -g}"
+            - PUID=1000
+            - PGID=1000
+            # Replace with your timezone 
+            # format: Region/City
+            # refer to /usr/share/zoneinfo/Region/City)
+            # - TZ=[Region/City]
+        volumes:
+            # - heimdall_config:/config
+            - "$PWD/heimdall/config:/config"
+        ports:
+            # Port forwarding from host system port to container port
+            # [host-port]:[container-port]
+            # - 80:80 # for HTTP 
+            # - 443:443 # for HTTPS; optional
+            - 8080:80
+        restart: unless-stopped
 
+
+    ### NAS File/Media-related Server
     # Samba File Server
     sambafs:
         # Set custom image name
@@ -41,23 +49,24 @@ services:
         # Create docker image using the local Dockerfile build
         build: ./samba
         # Set custom image name
-        image: sambafs-debian
+        image: sambafs:alpine
         # Restart container (same as --restart)
         restart: unless-stopped
+        # Set user
+        # user: "$USER:$(id -g)"
         # Set Network to use
         networks:
-            - default
+            - default 
         # Set Volumes to share between host and container (same as -v)
         volumes:
             # "host-system-path:container-path"
             # [Examples]
-            # - "$PWD/samba/config/smb.conf:/etc/samba/smb.conf"
-            # - "$PWD/samba/config:/etc/samba" # Samba Configuration File
-            # - "$PWD/shares:/media/NAS/shares"
-            # - "$PWD/shares/public:/media/NAS/shares/public"
-            # - "$PWD/shares/home:/media/NAS/shares/homes"
-            - "$PWD/samba/config/:/etc/samba"
-            - "$PWD/:/mnt/docker/pwd"
+            # - "$PWD/samba/config/smb.conf:/etc/samba/smb.conf" # Config itself
+            # - "$PWD/samba/config/:/etc/samba" # Samba Configuration File
+            # - "$PWD/shares:/media/NAS/shares" # Media path
+            # - "$PWD/shares/public:/media/NAS/shares/public" # Public directory
+            # - "$PWD/shares/home:/media/NAS/shares/homes" # Home directory
+            - "/shared:/Shared"
         # Expose ports/port forwarding from host system port to container port (same as -p)
         ports:
             - "137:137/udp"
@@ -66,11 +75,11 @@ services:
             - "445:445/tcp" # For Samba file share
         # Set Environment Variables (same as -e)
         environment:
-            TZ: 'Asia/Singapore' # This is the timezone
+            # TZ: 'Region/City' # This is the timezone
         tty: true
-        command: "service smbd restart"
 
     jellyfin:
+        # Uses port 8096
         image: jellyfin/jellyfin
         container_name: jellyfin
         # user: $$(id -u):$$(id -g)
@@ -86,30 +95,102 @@ services:
             #Optional - Alternative address used for autodiscovery
             #- JELLYFIN_PublishedServerUrl=http://example.com
 
+    code-server:
+        # Set custom image name
+        image: codercom/code-server:latest
+        # Set Custom Container Name (same as --name)
+        container_name: "code-server"
+        # Restart container (same as --restart)
+        restart: always
+        # Set Volumes to share between host and container (same as -v)
+        volumes:
+            - "$HOME/.config:/home/coder/.config"
+            - "$PWD:/home/coder/project"
+        # Expose ports/port forwarding from host system port to container port (same as -p)
+        ports:
+            # - "[server-ip-address]:8080:8080"
+            - "8081:8080" 
+        # Set Environment Variables (same as -e)
+        environment:
+            - "DOCKER_USER=$USER"
+        # Set custom working directory (same as --working-dir)
+        working_dir: $HOME/Desktop/codebase
+        # Set User ID
+        # user: "$${id -u}:$${id -g}"
+
     ### Networking Server
+    # Reverse Proxy Server
+    #reverse-proxy:
+    #    build: ./nginx
+    #    container_name: "reverse-proxy-nginx"
+    #    networks:
+    #        - nginx-reverse-proxy
+    #    volumes:
+    #        - ./nginx/www:/usr/share/nginx/html
+    #        - "./nginx/etc/hosts:/etc/hosts"
+    #    restart: always
+    #    ports:
+    #        # Port forwarding the host system's port to the container's port
+    #        # [host system port]:[container port]
+    #        - 9080:80 # HTTP
+    #        - 8443:443 # HTTPS
+    nginx-proxy-manager:
+        image: 'jc21/nginx-proxy-manager:latest'
+        container_name: "nginx-proxy-manager"
+        restart: "unless-stopped"
+        environment:
+          #- TZ="Region/City"
+        depends_on:
+            # Dependencies
+            # - [container_name]
+            - heimdall
+            - sambafs
+            - jellyfin
+            - code-server
+            - pihole
+            - vpn
+            - guacamole
+        ports:
+            # Defaults
+            # - '80:80'
+            # - '81:81'
+            # - '443:443'
+            - "80:80"
+            - "81:81"
+            - "443:443"
+        volumes:
+            - "$PWD/nginx/proxy-manager/data:/data"
+
     # Pi-hole DNS Server, Resolver, Sinkhole, Firewall, Router
     pihole:
         container_name: pihole
         image: pihole/pihole:latest
         ports:
+          # Default
+          # - "53:53/tcp"
+          # - "53:53/udp"
+          # - "67:67/udp"
+          # - "80:80/tcp"
+          # - "443:443/tcp"
           - "53:53/tcp"
           - "53:53/udp"
           - "67:67/udp"
-          - "80:80/tcp"
-          - "443:443/tcp"
+          - "82:80/tcp"
+          - "444:443/tcp"
         environment:
-          TZ: 'Region/City' # This is the timezone; please change this
+          # TZ: 'Region/City' # This is the timezone
         volumes:
           - './pihole/etc-pihole/:/etc/pihole/'
           - './pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/'
         dns:
           - 127.0.0.1
           - 1.1.1.1
-          - 192.168.1.123
+          - [your-dns-server-ip-address]
         cap_add:
           - NET_ADMIN
         restart: always
 
+    # IPSec VPN Server using LibreSwan + xl2tpd (L2TP Daemon) 
     vpn:
         # Set image
         image: hwdsl2/ipsec-vpn-server
@@ -123,6 +204,20 @@ services:
         hostname: ipsec-vpn-server
         container_name: ipsec-vpn-server
         volumes:
-          - ikev2-vpn-data:/etc/ipsec.d/
+          # - ikev2-vpn-data:/etc/ipsec.d/
+          - "$PWD/ipsec-vpn/config:/etc/ipsec.d"
           - /lib.modules:/lib/modules:ro
+
+    # Remote Access Gateway
+    # Guacamole
+    guacamole:
+        image: maxwaldorf/guacamole
+        container_name: guacamole
+        ports:
+            # - "8080:8080"
+            - "8082:8080"
+        volumes:
+            - '$PWD/guacamole/etc/guac:/config'
+        restart: always
+
 
