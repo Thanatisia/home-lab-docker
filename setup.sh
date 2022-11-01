@@ -1,3 +1,4 @@
+#!/bin/env bash
 <<EOF
 Makefile setup script for creating docker
 
@@ -79,7 +80,7 @@ install()
     apt install docker docker-compose
 
     # Add user to docker-group
-    useradd -aG docker ${DOCKER_USER}
+    usermod -aG docker ${DOCKER_USER}
 
     # Start docker service
     systemctl start docker

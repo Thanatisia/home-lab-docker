@@ -1,0 +1,27 @@
+version: "3"
+
+networks:
+    default:
+
+services:
+    code-server:
+        # Set custom image name
+        image: linuxserver/code-server:latest
+        # Set Custom Container Name (same as --name)
+        container_name: "code-server"
+        # Restart container (same as --restart)
+        restart: always
+        # Set Volumes to share between host and container (same as -v)
+        volumes:
+            - "$HOME/.config:/home/coder/.config"
+            - "$PWD:/home/coder/project"
+        # Expose ports/port forwarding from host system port to container port (same as -p)
+        ports:
+            - "192.168.1.123:8080:8080"
+        # Set Environment Variables (same as -e)
+        environment:
+            - "DOCKER_USER=$USER"
+        # Set custom working directory (same as --working-dir)
+        working_dir: $HOME/Desktop/codebase
+        # Set User ID
+        # user: "$${id -u}:$${id -g}"
