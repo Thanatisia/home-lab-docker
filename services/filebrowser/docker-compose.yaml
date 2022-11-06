@@ -1,0 +1,17 @@
+version: "3.5"
+services:
+    file-browser:
+        image: filebrowser/filebrowser
+        container_name: file-browser
+        user: "1000:1000"
+        ports:
+            # [host system port number]:[container port number]
+            - 8081:80
+        volumes:
+            # [host-system-path]:[container path]
+            - "$PWD/:/srv"
+            - "$PWD/filebrowser/filebrowser.db:/database.db" # File-browser SQLite Database
+            - "$PWD/filebrowser/settings.json:/.filebrowser.json" # File Browser JSON settings
+        restart: unless-stopped
+        security_opt:
+            - no-new-privileges:true

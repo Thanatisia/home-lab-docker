@@ -138,6 +138,9 @@ You can use this template if you would like to make your own
 	- Reasons
 	    + Lightweight
 + pi-hole : DNS Server (Resolver), DNS Sinkhole, Firewall, Router
++ [file-browser](https://github.com/filebrowser/filebrowser) : Web-based (WebUI) File Manager for your Home Lab Server
+    - References
+        + [filebrowser - installation](https://filebrowser.org/installation)
 
 ## Documentation
 ### Code Server
