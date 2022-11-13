@@ -1,0 +1,19 @@
+# Docker compose for SQLite Browser 
+# - dockerfile made by linuxserver
+version: "3.5"
+services:
+    sqlite-browser:
+        image: linuxserver/sqlitebrowser:latest
+        container_name: sqlitebrowser
+        security_opt:
+            - seccomp:unconfined # Optional
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=Asia/Singapore # Your Timezone
+        volumes:
+            # - /path/to/config:/config
+            - "$PWD/sqlitebrowser/config:/config"
+        ports:
+            - 3000:3000
+        restart: unless-stopped
