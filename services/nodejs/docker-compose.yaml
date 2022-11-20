@@ -1,0 +1,32 @@
+version: "3.5"
+services:
+    nodejs:
+        # Docker compose for NodeJS/npm
+        # nodejs : Webserver
+        image: node:current
+        container_name: nodejs
+        restart: unless-stopped
+        volumes:
+            # Mount volumes (corresponds to docker run's '-v' parameter)
+            # - [host system volume]:[container volume]:[permission]
+            - "${PWD}/nodejs:/srv"
+        working_dir: "/srv" # Set working directory; corresponds to docker run's '-w' parameter
+        ports:
+            # Port forwarding/translating from host system port to container port, opening access
+            # Corresponding to 'docker run -p'
+            # - [host system port]:[container port]
+            - "8080:8080"
+        # command: "npm run build" 
+        # Execute command on compose startup; corresponds to executing of command behind docker run image
+        command: 
+            - /bin/sh
+            - -c
+            - | 
+                # Update npm
+                npm install -g npm
+                # Install Dependencies
+                npm install express --save
+                # Start nodeJS server
+                node server.js
+        tty: true # Corresponding to 'docker run -t'
+        stdin_open: true # Corresponding to 'docker run -i'

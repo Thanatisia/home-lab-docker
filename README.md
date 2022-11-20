@@ -205,6 +205,11 @@ You can use this template if you would like to make your own
     docker-compose restart [container-name]
     ```
 
+- Open Interactive Shell in docker-compose
+    ```console
+    docker-compose run [service-name]
+    ```
+
 - Check Error Logs
     + Generally you will want to do this if the container keeps restarting
     ```console

@@ -17,10 +17,13 @@ The services found here are all generally useful tools and utilities used in a h
 - heimdall
 - ipsec-vpn-server
 - jellyfin
+- mysql
 - nginx-proxy-manager
 - nginx-reverse-proxy
+- nodejs
 - pi-hole
 - samba-file-server
 - sqlite-browser
     - author
         + linuxserver
+- uptime kuma
