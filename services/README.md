@@ -18,6 +18,7 @@ The services found here are all generally useful tools and utilities used in a h
 - ipsec-vpn-server
 - jellyfin
 - mysql
+- Nextcloud
 - nginx-proxy-manager
 - nginx-reverse-proxy
 - nodejs
