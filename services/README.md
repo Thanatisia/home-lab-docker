@@ -9,22 +9,23 @@ The services found here are all generally useful tools and utilities used in a h
 ```
 
 ## Services List
-- code-server
+- code-server : DevOps, Development utility, Web-based Code Editor
     - author
         + 32-bit : linuxserver
-- file-browser
-- guacamole
-- heimdall
-- ipsec-vpn-server
-- jellyfin
-- mysql
-- Nextcloud
-- nginx-proxy-manager
-- nginx-reverse-proxy
-- nodejs
-- pi-hole
-- samba-file-server
-- sqlite-browser
+- file-browser : Utility
+- guacamole : Network-based Browser-based Remote Desktop Protocol/utility
+- heimdall : Dashboard
+- ipsec-vpn-server : VPN Server
+- jellyfin : Media Server
+- mysql : Database Management System Utility
+- Nextcloud : NAS service
+- nginx-proxy-manager : Proxy server, Reverse proxy server
+- nginx-reverse-proxy : Proxy server, Reverse proxy server, Web server
+- nodejs : DevOps, Development utility, web server
+- pi-hole : DNS server, DNS sinkhole, Firewall
+- samba-file-server : File Server
+- sqlite-browser : WebGUI Database Management System
     - author
         + linuxserver
-- uptime kuma
+- uptime kuma : Monitoring utility
+- wireguard : VPN server
