@@ -1,0 +1,28 @@
+version: "3.5"
+services:
+  pihole-with-unbound:
+    ## Pihole with Unbound
+    container_name: pihole-with-unbound
+    image: pihole-with-unbound
+    build: .
+    ports:
+      - "53:53/tcp" # For DNS
+      - "53:53/udp" # For DNS
+      - "5335:5335/tcp" # For unbound
+      - "5335:5335/udp" # For unbound
+      - "67:67/udp" # For DHCP
+      - "80:80/tcp" # For HTTP, accessing webapp from browser
+      - "443:443/tcp" # For HTTPS
+    environment:
+      # TZ: 'Region/City' # This is the timezone
+    volumes:
+      - '${PWD}/pihole_unbound.d/etc-pihole/:/etc/pihole/'
+      - '${PWD}/pihole_unbound.d/etc-dnsmasq.d/:/etc/dnsmasq.d/'
+      - '${PWD}/pihole_unbound.d/etc-unbound/unbound/:/etc/unbound/'
+    dns:
+      - 127.0.0.1#5335
+      - 8.8.8.8
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+

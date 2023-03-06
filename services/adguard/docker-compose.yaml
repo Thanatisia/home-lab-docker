@@ -1,0 +1,23 @@
+version: "3.5"
+services:
+    adguardhome:
+        image: adguard/adguardhome
+        container_name: adguardhome
+        environment:
+            - "PUID=1000"
+            - "PGID=1000"
+        cap_add:
+            - CAP_NET_ADMIN
+        volumes:
+            - "${PWD}/adguard-home/conf:/opt/adguardhome/conf"
+            - "${PWD}/adguard-home/work:/opt/adguardhome/work"
+        ports:
+            # DNS
+            - 53:53/tcp
+            - 53:53/udp
+            # HTTP
+            - 80:80/tcp
+            # Required for setup, one-time only
+            - 3000:3000/tcp
+        restart: unless-stopped
+
