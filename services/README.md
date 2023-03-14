@@ -27,5 +27,6 @@ The services found here are all generally useful tools and utilities used in a h
 - sqlite-browser : WebGUI Database Management System
     - author
         + linuxserver
+- unbound : DNS Resolver
 - uptime kuma : Monitoring utility
 - wireguard : VPN server

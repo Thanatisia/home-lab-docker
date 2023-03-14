@@ -11,9 +11,11 @@ just joking, I am just playing around with containerizing my self-host setup (tr
 
 ### Supporting Architectures
 + maxwaldorf/guacamole    : AMD64 (x86_64), arm64v8
-+ pihole/pi-hole          : AMD64 (x86_64), armv7 and above, arm64v7 and above etc
++ pihole/pi-hole          : AMD64 (x86_64), armv7 and above, arm64v7 and above etc; Supporting armv6 as of 2023-03-14
 + hwdsl2/ipsec-vpn-server : AMD64 (x86_64), armv7 and above, arm64v7 and above etc.
 + codercom/code-server    : amd64, arm64, amd64
++ mvance/unbound          : AMD64 (x86_64) and above
++ mvance/unbound-rpi      : armv7 and above; for Raspberry Pi
 
 ### Notes
 - Do note that the following applications may have issues running on docker due to reasons such as incompatibility with the architecture (possible reasons will be specified below).
@@ -21,7 +23,7 @@ just joking, I am just playing around with containerizing my self-host setup (tr
         - codercom/code-server : Supports only amd64 and arm64 and x86_64/amd64 devices
             + For ARM 32-bit (i.e. armvhf) support : use 'linuxserver/code-server'
         + maxwaldorf/guacamole : works for x86_64 and arm64v8, no support for 32-bits (armvhf); Tested - Resulted in "does not have matching manifest list for arm/v7" error
-        + pi-hole : Incompatible with ARMv6 - container will keep stopping and running/restarting; only ARMv7 and above, AMD64, x86_64 etc.
+        + unbound(-rpi) : Incompatible with ARMv6 - container will keep stopping and running/restarting; only ARMv7 and above, AMD64, x86_64 etc.
         + hwdsl2  : Incompatible with ARMv6 - container will keep stopping and running/restarting; only ARMv7 and above, AMD64, x86_64 etc.
 
 ### Quickstart Guide
