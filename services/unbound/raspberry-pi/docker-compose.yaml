@@ -1,0 +1,16 @@
+version: "3"
+services:
+  unbound:
+    image: 'mvance/unbound-rpi:latest'
+    container_name: 'unbound'
+    ports:
+      - "5335:5335/tcp" # TCP port number for Unbound DNS resolver; Corresponds to the port number specified in the unbound configuration file
+      - "5335:5335/udp" # UDP port number for Unbound DNS resolver; Corresponds to the port number specified in the unbound configuration file
+    restart: unless-stopped
+    volumes:
+      - "./unbound.d/etc-unbound/unbound/:/opt/unbound/etc/unbound"
+    command:
+      - /bin/bash
+      - -c |
+        "dir /etc"
+
