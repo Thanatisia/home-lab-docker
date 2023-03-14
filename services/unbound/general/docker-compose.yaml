@@ -1,0 +1,11 @@
+version: "3.5"
+services:
+  unbound:
+    image: 'mvance/unbound:latest'
+    container_name: 'unbound'
+    ports:
+      - "5335:53/tcp"
+      - "5335:53/udp"
+    restart: unless-stopped
+    volumes:
+      - "./unbound.d/etc-unbound/unbound/:/etc/unbound/"
