@@ -1,0 +1,27 @@
+version: "3.5"
+services:
+  postgresql:
+    image: postgres:latest
+    container_name: postgresql
+    restart: unless-stopped
+      # Define your environment variables here
+      # OR
+      # Define in an .env file
+      # --------------------------------------------------
+      # Uncomment the following to define here
+      #environment:
+      #- POSTGRES_USER=[your-postgresql-database-username]
+      #- POSTGRES_PASSWORD=[your-postgresql-database-password]
+      #
+      # Environment Variables file
+      # Please define all your environment variables in here if you dont want to 
+      # specify them within the docker-compose file via the 'environment' key
+      # --------------------------------------------------
+      # Uncomment the following to use the env file
+      # env_file: 
+      # - "./postgresql/.env"
+    ports:
+      - "5432:5432" # Database port
+    volumes:
+      - "./postgresql/data:/var/lib/postgresql/data" # Data folder
+    
