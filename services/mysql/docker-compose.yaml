@@ -4,6 +4,13 @@ services:
         # MySQL Database Docker compose
         image: mysql:latest
         container_name: mysql
+        # Environment Variables here
+        # Uncomment 'environment:' to include the environment variables directly
+        #environment:
+        #    - MYSQL_ROOT_PASSWORD: ""
+        #    - MYSQL_USER: ""
+        #    - MYSQL_PASSWORD: ""
+        #    - MYSQL_DATABASE: ""
         env_file:
             # Environment file
             # - please place all your MYSQL environment variables in here
@@ -19,3 +26,5 @@ services:
             # Equivalent to docker run's : '-p'
             # MySQL default port: 3306
             - "3306:3306"
+        volumes:
+            - "./mysql/data:/var/lib/mysql" # Mount MySQL Data directory
