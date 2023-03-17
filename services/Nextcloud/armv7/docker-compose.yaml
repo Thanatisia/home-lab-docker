@@ -1,0 +1,135 @@
+# Docker-compose file 
+# for
+# NextCloud NAS/file sharing server
+# with Networking
+version: "3.5"
+
+#volumes:
+#   nextcloud:
+#   db:
+
+networks:
+    # Named, Bridged Networking
+    nextcloud_network:
+
+services:
+    nextcloud:
+        ## NextCloud NAS server
+        image: arm32v7/nextcloud:latest
+        container_name: nextcloud-app
+        networks:
+            - nextcloud_network
+        restart: unless-stopped
+        depends_on:
+            ## Dependencies
+            ## - to build these before starting up nextcloud
+            ## corresponds with running 'docker run' for all specified services before this
+            - nginx-proxy
+            - letsencrypt
+            - mariadb
+        volumes:
+            ## Volumes to mount
+            ## Format: [host system volume]:[container volume]:[permissions]
+            # WebApp HTML page
+            - "${PWD}/nextcloud/app/html:/var/www/html"
+            # WebApp Config
+            - "${PWD}/nextcloud/app/config:/var/www/html/config"
+            # NextCloud Custom Applications
+            - "${PWD}/nextcloud/app/custom_apps:/var/www/html/custom_apps"
+            # NextCloud Themes
+            - "${PWD}/nextcloud/app/themes:/var/www/html/themes"
+            # Data folder - to store your NextCloud data
+            # - place this volume at whichever location you want to store your data
+            # - "${PWD}/nextcloud/app/data:/var/www/html/data"
+            - "${PWD}/nextcloud/data:/var/www/html/data"
+            - "/etc/localtime:/etc/localtime:ro"
+        # ports:
+            ## Port Forwarding/Translation 
+            ## Format: [host system port]:[container port]
+            ## - corresponds with 'docker run -p'
+        env_file:
+            ## Import environment variables via an environment file
+            ## corresponds with running 'docker run -e' multiple times
+            ## Contents:
+            ##  - VIRTUAL_HOST=nextcloud.[YOUR-DOMAIN] : Your nextcloud domain virtual hostname
+            ##  - LETSENCRYPT_HOST=nextcloud.[YOUR-DOMAIN] : Your Let's Encrypt Hostname
+            ##  - LETSENCRYPT_EMAIL=[YOUR-EMAIL] : Your Let's Encrypt Email for PKI Authentication
+            - "${PWD}/nextcloud/app/.env"
+            
+    nginx-proxy:
+        ## Nginx Reverse proxy server
+        image: jwilder/nginx-proxy:alpine
+        container_name: nextcloud-proxy
+        labels:
+            - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true"
+        networks:
+            - nextcloud_network
+        restart: unless-stopped
+        volumes:
+            ## Volumes to mount
+            ## Format: [host system volume]:[container volume]:[permissions]
+            - "${PWD}/nextcloud/proxy/conf.d:/etc/nginx/conf.d:rw"
+            - "${PWD}/nextcloud/proxy/vhost.d:/etc/nginx/vhost.d:rw"
+            - "${PWD}/nextcloud/proxy/html:/usr/share/nginx/html:rw"
+            - "${PWD}/nextcloud/proxy/certs:/etc/nginx/certs:ro"
+            - "/etc/localtime:/etc/localtime:ro" # Read-only localtime from host system
+            - "/var/run/docker.sock:/tmp/docker.sock:ro"
+        ports:
+            ## Port Forwarding/Translation 
+            ## Format: [host system port]:[container port]
+            ## - corresponds with 'docker run -p'
+            - "80:80"
+            - "443:443"
+
+    letsencrypt:
+        ## Let's Encrypt SSL certificate service
+        image: jrcs/letsencrypt-nginx-proxy-companion
+        container_name: nextcloud-letsencrypt
+        networks:
+            - nextcloud_network
+        depends_on:
+            ## Dependencies
+            ## - to build these before starting up nextcloud
+            ## corresponds with running 'docker run' for all specified services before this
+            - nginx-proxy
+        restart: unless-stopped
+        volumes:
+            ## Volumes to mount
+            ## Format: [host system volume]:[container volume]:[permissions]
+            - "${PWD}/nextcloud/proxy/vhost.d:/etc/nginx/vhost.d:rw"
+            - "${PWD}/nextcloud/proxy/html:/usr/share/nginx/html:rw"
+            - "${PWD}/nextcloud/proxy/certs:/etc/nginx/certs:rw"
+            - "/etc/localtime:/etc/localtime:ro" # Read-only localtime from host system
+            - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
+    mariadb:
+        ## MariaDB Database service
+        image: mariadb
+        container_name: nextcloud-mariadb
+        networks:
+            - nextcloud_network
+        depends_on:
+            ## Dependencies
+            ## - to build these before starting up nextcloud
+            ## corresponds with running 'docker run' for all specified services before this
+            - nginx-proxy
+        restart: unless-stopped
+        volumes:
+            ## Volumes to mount
+            ## Format: [host system volume]:[container volume]:[permissions]           
+            - "${PWD}/nextcloud/db/mysql:/var/lib/mysql"
+            - "/etc/localtime:/etc/localtime:ro"
+        env_file:
+            ## Import environment variables via an environment file
+            ## corresponds with running 'docker run -e' multiple times
+            ## Contents:
+            ##  - MYSQL_ROOT_PASSWORD : Database root password
+            ##  - MYSQL_USER: Database user password
+            ##  - MYSQL_PASSWORD : Database user password
+            ##  - MYSQL_DATABASE : Database name
+            - "${PWD}/nextcloud/db/.env"
+        ports:
+            ## Port Forwarding/Translation 
+            ## Format: [host system port]:[container port]
+            ## - corresponds with 'docker run -p'
+            - "3307:3307"
