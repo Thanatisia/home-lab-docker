@@ -1,9 +1,9 @@
 version: "3.5"
 services:
-    mysql:
+    mariadb:
         # MySQL Database Docker compose
         image: mariadb:latest
-        container_name: mysql
+        container_name: mariadb
         # Environment Variables here
         # Uncomment 'environment:' to include the environment variables directly
         #environment:
