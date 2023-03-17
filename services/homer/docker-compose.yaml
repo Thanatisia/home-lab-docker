@@ -1,0 +1,22 @@
+# Docker-compose for
+# Dashboard utility
+# Service Author: bastienwirtz
+# Service Name: Homer
+# URL: https://github.com/bastienwirtz/homer
+# Configurations: https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md
+
+version: "3.5"
+services:
+  homer:
+    image: b4bz/homer:latest
+    container_name: "homer"
+    restart: unless-stopped
+    ports:
+      # Port forward/translation/mapping from
+      # [Host-system-port]:[Container port]
+      - "8080:8080"
+    volumes:
+      # Mounting filesystem volumes of
+      # [Host-system-volume]:[Container volume]
+      - "./homer/www/assets:/www/assets" # Mount Web server assets folder
+

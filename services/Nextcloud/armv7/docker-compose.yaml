@@ -1,0 +1,20 @@
+# Docker-compose for
+# NAS File Server
+# Service Author: arm32v7
+# Service Name: nextcloud
+# URL: https://hub.docker.com/r/arm32v7/nextcloud
+# Configurations: https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/occ_command.html
+
+version: "3.5"
+services:
+  nextcloud:
+    image: arm32v7/nextcloud:latest
+    container_name: nextcloud
+    restart: unless-stopped
+    volumes:
+      - "./nextcloud/www/html:/var/www/html"
+      - "./nextcloud/apps:/var/www/html/custom_apps"
+      - "./nextcloud/config:/var/www/html/data"
+      # - "./nextcloud/theme:/var/www/html/themes/[your-custom-theme-here]
+    ports:
+      - "8080:80"

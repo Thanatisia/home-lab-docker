@@ -1,0 +1,31 @@
+version: "3.5"
+services:
+    mariadb:
+        # MySQL Database Docker compose
+        image: mariadb:latest
+        container_name: mariadb
+        # Environment Variables here
+        # Uncomment 'environment:' to include the environment variables directly
+        #environment:
+        #    - MYSQL_ROOT_PASSWORD: ""
+        #    - MYSQL_USER: ""
+        #    - MYSQL_PASSWORD: ""
+        #    - MYSQL_DATABASE: ""
+        env_file:
+            # Environment file
+            # - please place all your MYSQL environment variables in here
+            # namely:
+            #   - MYSQL_ROOT_PASSWORD : Root password
+            #   - MYSQL_USER : MySQL Username
+            #   - MYSQL_PASSWORD : MySQL user password
+            #   - MYSQL_DATABASE : MySQL Database Name
+            - "${PWD}/mariadb/.env"
+        ports:
+            # Port forwarding/translation between host system and container
+            # - [host system port]:[container port]
+            # Equivalent to docker run's : '-p'
+            # MySQL default port: 3306
+            - "3306:3306"
+        volumes:
+            - "./mariadb/data:/var/lib/mysql" # Mount MySQL Data directory
+            - "./mariadb/config:/config" # Mount MySQL Configuration file
