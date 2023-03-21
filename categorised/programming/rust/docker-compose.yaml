@@ -1,0 +1,13 @@
+version: "3.5"
+services:
+  rust:
+    image: rust
+    container_name: rust
+    build: .
+    restart: unless-stopped
+    volumes:
+      ## Mount source file
+      - "./rust/app/src:/rust/app/src"
+      ## Mount output binary folder
+      - "./rust/app/bin:/bin"
+
