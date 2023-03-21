@@ -1,0 +1,35 @@
+# Docker-compose for
+# Database Management System (DBMS)
+# Service Author: phpmyadmin
+# Service Name: phpmyadmin
+# URL: https://github.com/phpmyadmin/phpmyadmin
+# Configurations: 
+
+version: "3.5"
+services:
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: unless-stopped
+      # Define your environment variables here
+      # OR
+      # Define in an .env file
+      # --------------------------------------------------
+      # Uncomment the following to define here
+      #environment:
+      #- PMA_HOST=[your-phmyadmin-host-username]
+      #- PMA_PORT=[your-phpmyadmin-host-port]
+      #- PMA_ARBITRARY=[1|0]
+      #
+      # Environment Variables file
+      # Please define all your environment variables in here if you dont want to 
+      # specify them within the docker-compose file via the 'environment' key
+      # --------------------------------------------------
+      # Uncomment the following to use the env file
+    env_file: 
+      - "./phpmyadmin/.env"
+    ports:
+      # Port forwarding/translation from host system port to container port
+      # [host system port]:[container port]
+      - "8080:80"
+
