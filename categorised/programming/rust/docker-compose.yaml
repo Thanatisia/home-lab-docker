@@ -3,11 +3,16 @@ services:
   rust:
     image: rust
     container_name: rust
-    build: .
-    restart: unless-stopped
+    # build: . # Uncomment this if you want to build your own Dockerfile
+    # restart: unless-stopped # Uncomment this if you want the docker-compose file to repeat; uncomment 'tty: true' as well to enter the stdin tty mode
+    tty: true # Corresponds to '-it' in docker run
+    working_dir: "/rust/app/src/my-project" # Corresponds to Dockerfile's WORKDIR option; This sets the startup working directory of the current container
     volumes:
+      ## Maps and Mount host system volumes to container volume
+      ## Syntax: [host system volume]:[container volume]{:permissions}
+      ## Mount applications directory
+      - "./rust/app:/rust/app"
       ## Mount source file
       - "./rust/app/src:/rust/app/src"
-      ## Mount output binary folder
-      - "./rust/app/bin:/bin"
+    command: "cargo build --release" # automatically execute the cargo build command; Comment this if you want to go into tty mode
 
