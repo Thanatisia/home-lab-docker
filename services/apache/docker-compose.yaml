@@ -1,0 +1,22 @@
+# Docker-compose for
+# Web Server utility
+# Service Author: apache
+# Service Name: apache (aka httpd)
+# URL: https://github.com/apache/httpd
+# Configurations: 
+
+version: "3.5"
+services:
+  apache:
+    image: httpd:latest
+    container_name: apache
+    restart: unless-stopped
+    ports:
+      # Port forwarding/translation from host system port to container port
+      # [host system port]:[container port]
+      - "8080:80"
+    volumes:
+      # - "./apache/var/www/html:/var/www/html" # Data folder
+      - "./apache/var/www/html:/usr/local/apache2/htdocs" # Data folder
+      
+
