@@ -1,0 +1,77 @@
+version: "3.5"
+services:
+  mysql:
+      # MySQL Database Docker compose
+      image: mysql:latest
+      container_name: mysql
+      # Environment Variables here
+      # Uncomment 'environment:' to include the environment variables directly
+      #environment:
+      #    - MYSQL_ROOT_PASSWORD: ""
+      #    - MYSQL_USER: ""
+      #    - MYSQL_PASSWORD: ""
+      #    - MYSQL_DATABASE: ""
+      env_file:
+          # Environment file
+          # - please place all your MYSQL environment variables in here
+          # namely:
+          #   - MYSQL_ROOT_PASSWORD : Root password
+          #   - MYSQL_USER : MySQL Username
+          #   - MYSQL_PASSWORD : MySQL user password
+          #   - MYSQL_DATABASE : MySQL Database Name
+          - "${PWD}/mysql/.env"
+      ports:
+          # Port forwarding/translation between host system and container
+          # - [host system port]:[container port]
+          # Equivalent to docker run's : '-p'
+          # MySQL default port: 3306
+          - "3306:3306"
+      volumes:
+          - "./mysql/data:/var/lib/mysql" # Mount MySQL Data directory
+
+  php:
+    ## Programming Language
+    image: php:apache # Using [php + apache] combination image
+    container_name: php
+    restart: unless-stopped
+    tty: true
+    depends_on:
+      - mysql
+    volumes:
+      # Mount host system volume to container volume
+      # [host system volume]:[container volume]
+      - "./app/src:/var/www/html"
+      # - "./app/src:/usr/local/apache2/htdocs" # Data folder
+    working_dir: /app # Set startup working directory
+    ports:
+      # Port forwarding/translating from host system port to container port
+      # [host system port]:[container port]
+      - 8080:80
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: unless-stopped
+      # Define your environment variables here
+      # OR
+      # Define in an .env file
+      # --------------------------------------------------
+      # Uncomment the following to define here
+      #environment:
+      #- PMA_HOST=[your-phmyadmin-host-username]
+      #- PMA_PORT=[your-phpmyadmin-host-port]
+      #- PMA_ARBITRARY=[1|0]
+      #
+      # Environment Variables file
+      # Please define all your environment variables in here if you dont want to 
+      # specify them within the docker-compose file via the 'environment' key
+      # --------------------------------------------------
+      # Uncomment the following to use the env file
+    env_file: 
+      - "./phpmyadmin/.env"
+    ports:
+      # Port forwarding/translation from host system port to container port
+      # [host system port]:[container port]
+      - "8081:80"
+
+
