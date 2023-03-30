@@ -1,0 +1,19 @@
+version: "3.5"
+services:
+  php:
+    ## Programming Language
+    image: php:apache # Using [php + apache] combination image
+    container_name: php
+    restart: unless-stopped
+    tty: true
+    volumes:
+      # Mount host system volume to container volume
+      # [host system volume]:[container volume]
+      - "./app/src:/var/www/html"
+      # - "./app/src:/usr/local/apache2/htdocs" # Data folder
+    working_dir: /app # Set startup working directory
+    ports:
+      # Port forwarding/translating from host system port to container port
+      # [host system port]:[container port]
+      - 8080:80
+
