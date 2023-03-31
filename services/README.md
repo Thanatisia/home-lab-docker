@@ -10,6 +10,7 @@ The services found here are all generally useful tools and utilities used in a h
 
 ## Services List
 - adguard : Adblocker service
+- apache : Web Server
 - code-server : DevOps, Development utility, Web-based Code Editor
     - author
         + 32-bit : linuxserver
@@ -26,12 +27,15 @@ The services found here are all generally useful tools and utilities used in a h
 - nginx-proxy-manager : Proxy server, Reverse proxy server
 - nginx-reverse-proxy : Proxy server, Reverse proxy server, Web server
 - nodejs : DevOps, Development utility, web server
+- phpmyadmin : A widely-used Database Management System WebUI made in php
 - pi-hole : DNS server, DNS sinkhole, Firewall
+- portainer : A Docker container management platform
 - postgresql : Database Management System Utility
 - samba-file-server : File Server
 - sqlite-browser : WebGUI Database Management System
     - author
         + linuxserver
+- syncthing : Self-hosted file synchronization service
 - unbound : DNS Resolver
 - uptime kuma : Monitoring utility
 - wireguard : VPN server
