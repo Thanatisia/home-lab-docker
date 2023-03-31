@@ -1,0 +1,33 @@
+# Docker-compose for
+# Self-Hosted Open Source Continuous File Synchronization service
+# Service Author: syncthing
+# Service Name: syncthing
+# URL: https://github.com/syncthing/syncthing
+# Configurations: 
+#   - Using docker: https://github.com/syncthing/syncthing/blob/main/README-Docker.md
+
+version: '3.5'
+
+services:
+  syncthing:
+    image: syncthing/syncthing:latest
+    container_name: syncthing
+    restart: unless-stopped
+    hostname: my-syncthing # To explicitly specify hostname
+    network_mode: host # (OPTIONAL) To use host network mode
+    environment:
+      - PUID=1000
+      - PGID=1000
+      # - STGUIADDRESS= # SUnset this variable to have syncthing fall back to listening on localhost/127.0.0.1
+    ports:
+      # Port forward/translate from host system port to container port
+      # [host-system-port]:[container-port]
+      - 8384:8834 # For Web UI
+      - 22000:22000/tcp # For TCP file transfers
+      - 22000:22000/udp # For UDP file transfers
+      - 21027:21027/udp # Receive local discovery broadcasts
+    volumes:
+      # Mount volumes from host system volume to container volume
+      # [host-system-volume]:[container-volume]:[permission]
+      - "${PWD}/syncthing/var/data:/var/syncthing" # Syncthing data storage
+
