@@ -1,0 +1,33 @@
+# Docker-compose for
+# Self-Hosted Docker container management platform
+# Service Author: portainer
+# Service Name: portainer
+# URL: https://github.com/portainer/portainer
+# Configurations: 
+#   - Home page: https://www.portainer.io/
+#   - Documentations: https://github.com/portainer/portainer-docs
+
+version: '3.5'
+
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    hostname: my-portainer # To explicitly specify hostname
+    # network_mode: host # (OPTIONAL) To use host network mode
+    environment:
+      - PUID=1000
+      - PGID=1000
+    ports:
+      # Port forward/translate from host system port to container port
+      # [host-system-port]:[container-port]
+      - 8000:8000 # For Web UI
+      - 9000:9000
+    volumes:
+      # Mount volumes from host system volume to container volume
+      # [host-system-volume]:[container-volume]:[permission]
+      - "${PWD}/portainer/data:/data"
+      - /var/run/docker.sock:/var/run/docker.sock
+
+
