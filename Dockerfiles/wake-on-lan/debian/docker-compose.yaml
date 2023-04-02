@@ -1,0 +1,19 @@
+# Docker-compose for
+# Building and running a container with etherwake
+
+version: "3.5"
+services:
+  wol:
+    build: . # Set Dockerfile build path
+    image: wol # Set image name
+    container_name: wol # Set container name
+    stdin_open: true # Set standard input to true (equivalent to -i)
+    tty: true # Set tty to true (equivalent to -t)
+    # ports:
+      # Port forward/translate from host system port to container port
+      # [host-system-port]:[container-port]
+    volumes:
+      # Mount volumes from host system volume to container volume
+      # [host-system-volume]:[container-volume]:[permission]
+      - "${PWD}/wol/config:/wol/configs" # Mount WakeonLAN configuration files for use
+
