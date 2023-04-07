@@ -1,0 +1,25 @@
+# Docker-compose for
+# yt-dlp Video Downloader WebUI
+# Service Author: marcopeocchi
+# Service Name: yt-dlp-webui
+# URL: https://github.com/marcopeocchi/yt-dlp-web-ui
+# Configurations: 
+#   - Docker Hub: https://hub.docker.com/r/marcobaobao/yt-dlp-webui
+#   - GHCR: https://github.com/marcopeocchi/yt-dlp-web-ui/pkgs/container/yt-dlp-web-ui
+
+version: '3.5'
+
+services:
+  yt-dlp-webui:
+    image: marcobaobao/yt-dlp-webui:latest
+    container_name: yt-dlp-webui
+    restart: unless-stopped
+    ports:
+      # Port forward/translate from host system port to container port
+      # [host-system-port]:[container-port]
+      - 3033:3033
+    volumes:
+      # Mount volumes from host system volume to container volume
+      # [host-system-volume]:[container-volume]:[permission]
+      - "${PWD}/yt-dlp/downloads:/downloads" # yt-dlp downloads storage
+
