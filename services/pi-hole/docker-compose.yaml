@@ -14,15 +14,7 @@ services:
           - "67:67/udp"
           - "80:80/tcp"
           - "443:443/tcp"
-        environment:
-          # TZ: 'Region/City' # This is the timezone
-          ### Timezone and locale
-          # TZ: 'Region/City'
-          ### WebUI Environment Variables
-          # WEBPASSWORD: "Password-here"
-          WEBPASSWORD_FILE: './pihole/secrets/WebPasswords' # WebUI Password File; Place your WEBPASSWORD secret here; Related to 'WEBPASSWORD'
-          ### FTL DNS
-          FTLCONF_LOCAL_IPV4: your-server-ipv4-address ### Set your server IP here
+        env_file: "./pihole/secrets/.env"
         volumes:
           - './pihole/etc-pihole/:/etc/pihole/'
           - './pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/'
