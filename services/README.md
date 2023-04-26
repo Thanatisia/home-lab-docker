@@ -22,6 +22,7 @@ The services found here are all generally useful tools and utilities used in a h
 - ipsec-vpn-server : VPN Server
 - jellyfin : Media Server
 - mariadb : Database Management System Utility
+- metube : Self-hosted yt-dlp Web UI
 - mysql : Database Management System Utility
 - Nextcloud : NAS service
 - nginx-proxy-manager : Proxy server, Reverse proxy server
@@ -39,3 +40,4 @@ The services found here are all generally useful tools and utilities used in a h
 - unbound : DNS Resolver
 - uptime kuma : Monitoring utility
 - wireguard : VPN server
+- yt-dlp-webui : Self-hosted yt-dlp Web UI
