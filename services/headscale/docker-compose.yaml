@@ -1,0 +1,25 @@
+# Docker-compose
+# for
+# Headscale - Self-hosted Tailscale master node
+# [Resources]
+# DockerHub: https://hub.docker.com/r/headscale/headscale
+# Documentations: https://github.com/juanfont/headscale/blob/main/docs/running-headscale-linux.md
+version: "3.5"
+services:
+  headscale:
+    image: headscale/headscale:latest
+    container_name: headscale
+    restart: unless-stopped
+    # environment:
+    ports:
+      # Port map/translate/forward host system port to container port
+      # [host system port]:[container port]
+      - "0.0.0.0:8081:8080"
+      - "0.0.0.0:9090:9090"
+    volumes:
+      # Mount volume from host system to container
+      # [host system volume]:[container volume]:[permission]
+      - "./headscale/config:/etc/headscale" # Mount configurations folder
+      - "./headscale/data:/var/lib/headscale" # Mount applications data
+    command: headscale serve # Startup headscale server
+

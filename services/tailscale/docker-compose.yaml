@@ -1,0 +1,30 @@
+# Docker-compose
+# for
+# tailscale - Tailscale daemon
+# [Resources]
+# DockerHub: https://hub.docker.com/r/tailscale/tailscale
+version: "3.5"
+services:
+  tailscaled:
+    image: tailscale/tailscale:latest
+    container_name: tailscaled
+    hostname: Tailscaled
+    restart: unless-stopped
+    environment:
+      - TS_AUTHKEY=tskey-auth-[key] # To use an auth key for an ephemeral node; Generate from your admin Dashboard
+      - TS_ACCEPT_DNS=false # To opt out of Tailscale DNS
+      - TS_EXTRA_ARGS=--advertise-exit-node # To allow setting of exit nodes
+      - TS_HOSTNAME=Tailscaled # To set a unique machine name for the device
+      - TS_STATE_DIR=/var/lib/tailscale # To make the machine maintain with the same IP and name
+    # ports:
+      # Port map/translate/forward host system port to container port
+      # [host system port]:[container port]
+    volumes:
+      # Mount volume from host system to container
+      # [host system volume]:[container volume]:[permission]
+      - "./tailscale/config:/etc/tailscale" # Mount configurations folder
+      - "./tailscale/data:/var/lib/tailscale" # Mount applications data
+      - "/dev/net/tun:/dev/net/tun" # Network
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
