@@ -1,0 +1,22 @@
+# Docker-compose
+# for
+# DuckDNS auto-update service
+# [Resources]
+# DockerHub: https://hub.docker.com/r/linuxserver/duckdns
+version: "3.5"
+services:
+  duckdns:
+    image: lscr.io/linuxserver/duckdns:latest
+    container_name: duckdns
+    environment:
+      # - PUID=1000 #Optional
+      # - PGID=1000 #Optional
+      # - TZ=Region/City # Optional
+      # - SUBDOMAINS=subdomain1,subdomain2 # Optional
+      # - TOKEN=token # Optional
+      # - LOG_FILE=[false|true] # Optional
+    volumes:
+      # Mount volume from host system to container
+      # [host system volume]:[container volume]:[permission]
+      - "./duckdns/appdata/config:/config" # Mount appdata configs
+    restart: unless-stopped
