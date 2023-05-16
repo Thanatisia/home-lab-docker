@@ -14,9 +14,11 @@ The services found here are all generally useful tools and utilities used in a h
 - code-server : DevOps, Development utility, Web-based Code Editor
     - author
         + 32-bit : linuxserver
+- duckdns : Dynamic DNS auto-updater service
 - file-browser : Utility
 - gitea : Self-hosted Git remote repository hosting service
 - guacamole : Network-based Browser-based Remote Desktop Protocol/utility
+- headscale : Self-hosted master node/server implementation of the tailscale mesh network project
 - heimdall : Dashboard
 - homer : Dashboard
 - ipsec-vpn-server : VPN Server
@@ -37,6 +39,7 @@ The services found here are all generally useful tools and utilities used in a h
     - author
         + linuxserver
 - syncthing : Self-hosted file synchronization service
+- tailscale : Tailscale daemon for the tunnel Mesh network VPN service based on Wireguard VPN without the need to port forward
 - unbound : DNS Resolver
 - uptime kuma : Monitoring utility
 - wireguard : VPN server
