@@ -1,0 +1,92 @@
+# Docker-compose for
+# Self-Hosted Home Hub streaming service
+# Service Author: koush
+# Service Name: scrypted
+# URL: https://github.com/koush/scrypted
+#
+# Access the WebUI Management console at either
+#   http://[your-server-ip]:10443
+#   http://[your-server-ip]:11080
+#
+# The Scrypted docker-compose.yml file typically resides at:
+# ~/.scrypted/docker-compose.yml
+
+# Example volumes SMB (CIFS) and NFS.
+# Uncomment only one.
+
+# volumes:
+#     nvr:
+#         driver_opts:
+#             type: cifs
+#             o: username=[username],password=[password],vers=3.0,file_mode=0777,dir_mode=0777 
+#             device: //[ip-address]/[path-to-directory]
+#     nvr:
+#         driver_opts:
+#             type: "nfs"
+#             o: "addr=[ip-address],nolock,soft,rw"
+#             device: ":[path-to-directory]"
+
+version: '3.5'
+
+services:
+  scrypted:
+    image: koush/scrypted
+    container_name: scrypted
+    restart: unless-stopped
+    network_mode: host # (OPTIONAL) To use the networking on the host instead of docker networking
+    environment:
+      # - SCRYPTED_WEBHOOK_UPDATE_AUTHORIZATION=Bearer [SOME_RANDOM_TEXT] # Set this to some random text
+      # - SCRYPTED_WEBHOOK_UPDATE=http://localhost:10444/v1/update # Set the Server WebURL
+      - SCRYPTED_WEBHOOK_UPDATE_AUTHORIZATION=Bearer Some_Random_Text # Set this to some random text
+      - SCRYPTED_WEBHOOK_UPDATE=http://localhost:10444/v1/update # Set the Server WebURL
+      # For NVIDIA support
+      # - NVIDIA_VISIBLE_DEVICES=all
+      # - NVIDIA_DRIVER_CAPABILITIES=all
+    # runtime: nvidia
+    devices:
+      # Hardware-Accelerated video decoding, OpenCL etc
+      - /dev/dri:/dev/dri
+      # Uncomment below as necessary
+      ## zwave usb serial device
+      # - /dev/ttyACM0:/dev/ttyACM0
+      ## all USB devices, such as coral TPU
+      # - /dev/bus/usb:/dev/bus/usb
+    ports:
+      # Port forward/translate from host system port to container port
+      # [host-system-port]:[container-port]
+      - 11080:11080
+      - 10443:10443
+      - 10444:10444
+    volumes:
+      # Mount volumes from host system volume to container volume
+      # [host-system-volume]:[container-volume]:[permission]
+      - "./.scrypted/volume:/server/volume" # Scrypted volume mounts
+      # Modify and add the additional volumes for Scrypted NVR
+      # the following example would mount the '/mnt/sda/video' path on the host
+      # to the '/nvr' path inside the docker container
+      # - /mnt/sda/video:/nvr
+      
+      # or use a network mount from one of the examples above
+      # - type: volume # Type of mount
+      #   source: nvr  # host volume path
+      #   target: /nvr # destination volume path
+      #   volume:
+      #     nocopy: true
+      
+      # uncomment the following lines to expose Avahi, an mDNS advertiser.
+      # make sure Avahi is running on the host machine, otherwise this will not work.
+      # - /var/run/dbs:/var/run/dbs
+      # - /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket
+
+    # logging is noisy and will unnecessarily put wear on flash storage
+    # scrypted has per-device in-memory logging that is preferred
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+    # labels:
+      ## If you are using watchtower
+      # - "com.centurylinklabs.watchtower.scope=scrypted"
+

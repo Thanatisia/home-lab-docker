@@ -35,6 +35,7 @@ The services found here are all generally useful tools and utilities used in a h
 - portainer : A Docker container management platform
 - postgresql : Database Management System Utility
 - samba-file-server : File Server
+- scrypted : Self-Hosted Home Hub devices (Ring, Unifi, Google Home etc) management WebUI
 - sqlite-browser : WebGUI Database Management System
     - author
         + linuxserver
