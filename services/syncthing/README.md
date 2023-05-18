@@ -88,8 +88,28 @@ You can synchronize all your files in all your devices together into "nodes", fr
         + http://[your-server-ip]:10443
         + http://[your-server-ip]:11080
 
+- Synchronizing folders between devices
+    - Minimum Disk Space 
+        + Please ensure that the folder/drive which you are mounting the shared drive at has at least >= 1% of the total disk/device space
+        + If folder has less than 1% of the total disk/device space, the syncing will stop
+        ```
+        minimum_space = 0.01 * total_disk_space
+        ```
+
+### Android configurations
+- File/Folder paths:
+    + Internal (Public) Storage : /storage/0/[home-directory]
+    + External (Public) MicroSD Card : /storage/[MicroSD card ID]/[directory]
+
+- To change default configuration file path from internal storage to external (MicroSD) card path
+    - Go to Syncthing
+    - Go to WebUI
+    - Edit default configuration
+        + Change the path to '/storage/[MicroSD card ID]' (i.e. 9C33-6BBD)
+
 ## Wiki
-### Settings
+
+### Settings and Configurations
 - Ports
     + Application WebUI : 8384
     + Listening Port (TCP) : 22000
