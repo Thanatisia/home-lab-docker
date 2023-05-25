@@ -1,0 +1,24 @@
+# Docker-compose for
+# Self-Hosted useful IT tools for developers and people working in IT
+# Service Author: CorentinTh
+# Service Name: it-tools
+# URL: https://github.com/CorentinTh/it-tools
+# [Resources]
+# - Website : https://it-tools.tech/
+# - Dockerhub Image: corentinth/it-tools
+
+version: '3.5'
+
+services:
+  it-tools:
+    image: corentinth/it-tools:latest
+    container_name: it-tools
+    restart: unless-stopped
+    ports:
+      # Port forward/translate from host system port to container port
+      # [host-system-port]:[container-port]
+      - 8080:80
+    # volumes:
+      # Mount volumes from host system volume to container volume
+      # [host-system-volume]:[container-volume]:[permission]
+
