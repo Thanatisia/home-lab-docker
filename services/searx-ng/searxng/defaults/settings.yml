@@ -1,0 +1,17 @@
+# see https://docs.searxng.org/admin/engines/settings.html#use-default-settings
+use_default_settings: true
+
+# Server-side
+server:
+  # base_url is defined in the SEARXNG_BASE_URL environment variable, see .env and docker-compose.yml
+  secret_key: "ultrasecretkey"  # change this!
+  limiter: true  # can be disabled for a private instance
+  image_proxy: true
+
+# User Interface (Frontend)
+ui:
+  static_use_hash: true
+
+# For connecting to the redis database service; Only applicable if you are using redis database
+redis:
+  url: redis://redis:6379/0
