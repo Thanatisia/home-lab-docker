@@ -1,0 +1,57 @@
+# Docker-compose for
+# Caddy 2 : A powerful, enterprise-ready, open source web server alternative to Nginx/Traefik 
+# with automatic HTTPS written in Go(lang)
+# Service Author: caddyserver
+# Service Name: caddy
+# URL: https://github.com/caddyserver/caddy-docker
+#
+# [Resources]
+# Official Docs: https://caddyserver.com/docs/automatic-https
+# DockerHub: https://hub.docker.com/_/caddy
+#
+# [Documentations]
+# - Synopsis/Syntax
+#   caddy [action] {options} <arguments>
+# - Parameters
+#   - Positionals
+#     - server-type : The type of server you want to manage
+#       - Action
+#         - file-server
+#           - Options
+#             + --domain <domain> : Specify the domain name to serve
+#         - reverse-proxy : Startup as a reverse proxy server
+#           - Options
+#             + --from [source-domain:port-number]
+#             + --to [destination-domain:port-number]
+#   - Optionals
+#
+# [Examples]
+# - To test webserver
+#   curl http://[domain]/
+#
+# [Images]
+# - caddy:<version>-{distribution}
+
+version: '3.5'
+
+services:
+  caddy:
+    image: caddy:2
+    container_name: caddy
+    restart: unless-stopped
+    ports:
+      # Port forward/translate from host system port to container port
+      # [host-system-port]:[container-port]
+      - 80:80 # The HTTP port
+      # - 443:443 # The HTTPS port
+    volumes:
+      # Mount volumes from host system volume to container volume
+      # [host-system-volume]:[container-volume]:[permission]
+      ## Configuration
+      - "./caddy/etc/caddy/Caddyfile:/etc/caddy/Caddyfile" # The caddy configuration file
+      - "./caddy/config:/config" # Configuration folder
+      - "./caddy/data:/data" # Data folder
+      ## Web Server
+      # - "./caddy/usr/share/caddy/index.html:/usr/share/caddy/index.html" # The default config file simply serves from '/usr/share/caddy'
+      # - "./caddy/site:/srv" # Web sites to serve
+
