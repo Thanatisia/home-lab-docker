@@ -11,6 +11,7 @@ The services found here are all generally useful tools and utilities used in a h
 ## Services List
 - adguard : Adblocker service
 - apache : Web Server
+- caddy : A powerful, enterprise-ready, open source web/proxy/reverse proxy server alternative to Nginx/Traefik with automatic HTTPS written in Go(lang)
 - code-server : DevOps, Development utility, Web-based Code Editor
     - author
         + 32-bit : linuxserver
@@ -35,6 +36,7 @@ The services found here are all generally useful tools and utilities used in a h
 - portainer : A Docker container management platform
 - postgresql : Database Management System Utility
 - samba-file-server : File Server
+- searx-ng : Self-hosted free internet metasearch engine which aggregates results from various search engine services and databases
 - scrypted : Self-Hosted Home Hub devices (Ring, Unifi, Google Home etc) management WebUI
 - sqlite-browser : WebGUI Database Management System
     - author

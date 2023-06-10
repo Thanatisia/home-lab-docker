@@ -1,0 +1,64 @@
+# Docker-compose for
+# Searx-NG : Self-hosted free internet metasearch engine which aggregates results from various search engine services and databases.
+#   Searx-NG is the active branch/variant of the Searx project, whereby the latter is in maintenance mode.
+# Service Author: searxng
+# Service Name: searxng
+# URL: https://github.com/searxng/searxng
+# Docker URL: https://github.com/searxng/searxng-docker
+#
+# [Resources]
+# Official Docs: https://docs.searxng.org/
+# DockerHub: https://hub.docker.com/r/searxng/searxng
+# Default Settings: https://docs.searxng.org/admin/engines/settings.html#use-default-settings
+# 
+# [Documentations]
+# - Environemnt Variables
+#   + SEARXNG_BASE_URL=<URL>      : Set a custom Searx-NG Base URL for the server
+#   + SEARXNG_HOSTNAME=<hostname> : Set a custom Searx-NG hostname for the server
+#   + LETSENCRYPT_EMAIL=<email>   : Set the email for your Let's Encrypt TLS/SSL Certificate
+#
+# [Supporting Services]
+# - Redis : Database
+# - Caddy : Reverse Proxy
+#
+# [Notes]
+# - Please read the README for more information
+
+version: '3.7'
+
+services:
+  searxng:
+    image: searxng/searxng:latest
+    container_name: searxng
+    restart: unless-stopped
+    cap_drop:
+      # Network permission drop/blacklist
+      - ALL
+    cap_add:
+      # Network permission add/whitelist
+      - CHOWN
+      - SETGID
+      - SETUID
+    environment:
+      # Environment Variables
+      # - SEARXNG_BASE_URL=http://${SEARXNG_HOSTNAME:-localhost}/ # Set Custom Searx-NG's Base URL to access
+      - SEARXNG_BASE_URL=http://${SEARXNG_HOSTNAME:-<domain-name>:<port-number>}/ # Set Custom Searx-NG's Base URL to access
+    # env_file: "./searxng/.env" # Uncomment this if you want to use the .env file
+    ports:
+      # Port forward/translate from host system port to container port
+      # [host-system-port]:[container-port]
+      - 8080:8080 # The HTTP port
+      # - 443:443 # The HTTPS port
+    volumes:
+      # Mount volumes from host system volume to container volume
+      # [host-system-volume]:[container-volume]:[permission]
+      ## Configuration
+      - "./searxng:/etc/searxng:rw" # Data folder
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+
+
+
