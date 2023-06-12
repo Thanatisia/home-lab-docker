@@ -1,17 +1,49 @@
-version: "3.5"
+# Docker-compose for
+# filebrowser : Self-hosted, minimalistic Web/browser-based file manager
+# Service Author: filebrowser
+# Service Name: filebrowser
+# URL: https://github.com/filebrowser/filebrowser
+# Docker URL: https://hub.docker.com/r/filebrowser/filebrowser
+#
+# [Resources]
+# Techno Tim - Meet file browser : https://docs.technotim.live/posts/meet-file-browser/
+# 
+# [Documentations]
+# - Environemnt Variables
+#
+# [Notes]
+# - Please read the README for more information
+
+version: '3.7'
+
 services:
-    file-browser:
-        image: filebrowser/filebrowser
-        container_name: file-browser
-        user: "1000:1000"
-        ports:
-            # [host system port number]:[container port number]
-            - 8081:80
-        volumes:
-            # [host-system-path]:[container path]
-            - "$PWD/:/srv"
-            - "$PWD/filebrowser/filebrowser.db:/database.db" # File-browser SQLite Database
-            - "$PWD/filebrowser/settings.json:/.filebrowser.json" # File Browser JSON settings
-        restart: unless-stopped
-        security_opt:
-            - no-new-privileges:true
+  file-browser:
+    image: filebrowser/filebrowser:latest
+    container_name: file-browser
+    restart: unless-stopped
+    ## Enable to set user as currently running user
+    # user: "1000:1000"
+    ## Environment Variables
+    # environment:
+      # Environment Variables
+    # env_file: "./searxng/.env" # Uncomment this if you want to use the .env file
+    ## Networking
+    ports:
+      # Port forward/translate from host system port to container port
+      # [host-system-port]:[container-port]
+      - 8080:80 # The HTTP port
+      # - 443:443 # The HTTPS port
+    ## Filesystem
+    volumes:
+      # Mount volumes from host system volume to container volume
+      # [host-system-volume]:[container-volume]:[permission]
+      ## Configuration
+      - "./filebrowser/srv:/srv" # The folder path that you want to serve to the browser
+      - "./filebrowser/data/filebrowser.db:/database.db" # Store the SQLite DB file
+      - "./filebrowser/data/settings.json:/.filebrowser.json" # File Browser JSON settings
+    ## Security Option: 
+    ## Enable this to so that the container privileges cannot be escalated or changed
+    # security_opt:
+      # - no-new-privileges: true
+
+
