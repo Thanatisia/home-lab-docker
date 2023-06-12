@@ -26,7 +26,7 @@ services:
     ## Environment Variables
     # environment:
       # Environment Variables
-    # env_file: "./searxng/.env" # Uncomment this if you want to use the .env file
+    # env_file: "./[folder]/.env" # Uncomment this if you want to use the .env file
     ## Networking
     ports:
       # Port forward/translate from host system port to container port
@@ -40,7 +40,7 @@ services:
       ## Configuration
       - "./filebrowser/srv:/srv" # The folder path that you want to serve to the browser
       - "./filebrowser/data/filebrowser.db:/database.db" # Store the SQLite DB file
-      - "./filebrowser/data/settings.json:/.filebrowser.json" # File Browser JSON settings
+      - "./filebrowser/data/.filebrowser.json:/.filebrowser.json" # File Browser JSON settings
     ## Security Option: 
     ## Enable this to so that the container privileges cannot be escalated or changed
     # security_opt:

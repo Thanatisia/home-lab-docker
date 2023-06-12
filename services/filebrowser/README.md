@@ -30,6 +30,8 @@ It is also an alternative to cloud services like Dropbox and other web-based fil
     - Edit your docker-compose accordingly
         + Mount serving directory to '/srv'
         + Mount data directory to '/data'
+    - Note
+        + All mounted files must be created/must exist before you startup the service, otherwise the service will create them for you and there will be issues
 
 - Starting up
     3. Check your docker-compose
@@ -52,7 +54,8 @@ It is also an alternative to cloud services like Dropbox and other web-based fil
 
 - Project/Container folder structure
     + /srv : The folder path that you want to serve to the browser
-    + /database.db # Store the SQLite DB file
+    + /database.db : Store the SQLite DB file
+    + /.filebrowser.json : The File browser JSON file
 
 - Service Specifications
     - Ports 
