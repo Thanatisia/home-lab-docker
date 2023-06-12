@@ -83,5 +83,6 @@ It is also an alternative to cloud services like Dropbox and other web-based fil
 
 ### References
 + [Techno Tim Docs - Meet file browser](https://docs.technotim.live/posts/meet-file-browser/)
++ [Official Documentation](https://filebrowser.org/installation)
 
 ## Remarks
