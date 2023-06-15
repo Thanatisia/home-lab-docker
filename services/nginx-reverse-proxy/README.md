@@ -28,6 +28,7 @@
     |-- ssl/                   : SSL-related files and utilities
         |
         |-- gen_rsa.sh         : SSL RSA self-sign key-pair generator script using OpenSSL
+        |-- Place your SSL certificate and private key here
         |-- README.md
     |-- template/
         |
@@ -56,6 +57,10 @@
 - Edit 'nginx/configs/default.conf'
     + This is mapped to '/etc/nginx/conf.d/default.conf' and is the nginx default routing configuration file
     + Change this to include your server definition and routes
+- (Optional) Encrypting with HTTPS
+    + Generate Self-signed certificate with Private key using OpenSSL
+- Domain Names 
+    + Please ensure that your custom domain names has been added into your DNS server and/or host files
 
 ### Dependencies
 + docker(-ce)
@@ -77,9 +82,11 @@
 ### Snippets and Examples
 - Generate a self-signed certificate
     - using OpenSSL
-    ```console
-    sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/[private-key-name].key -out /etc/ssl/certs/[certificate-name].crt
-    ```
+        + SSL Certificate path: /etc/ssl/certs/cert.crt
+        + SSL Private Key path: /etc/ssl/private/private.key
+        ```console
+        sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/[private-key-name].key -out /etc/ssl/certs/[certificate-name].crt
+        ```
 
 - Configure nginx route
     ```
@@ -121,58 +128,8 @@
         - Expected result
             + It should proxy pass to your target location
 
-- Jellyfin
-    - Pre-Requisites
-        - (Optional) Encrypting with HTTPS
-            + Generate Self-signed certificate with Private key using OpenSSL
-
-    - Nginx configuration routing
-        - HTTP
-            ```
-            server {
-                listen 80;
-                server_name [domain];
-
-                # Routes
-                location / {
-                  proxy_pass http://[ip-address]:[port-number];
-                  proxy_pass_request_headers on;
-                  proxy_set_header Host $host;
-                  proxy_set_header X-Real-IP $remote_addr;
-                  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                  proxy_set_header X-Forwarded-Proto $scheme;
-                  proxy_set_header X-Forwarded-Host $http_host;
-                  proxy_set_header Upgrade $http_upgrade;
-                  proxy_set_header Connection $http_connection;
-                  proxy_buffering off;
-                }
-            }
-            ```
-        - HTTPS
-            ```
-            server {
-                listen 443 ssl;
-                server_name [domain];
-
-                # SSL Certification
-                ssl_certificate /etc/ssl/certs/cert.crt # Place your SSL certificate here
-                ssl_certificate_key /etc/ssl/private/private.key # Place your private key here
-
-                # Routes
-                location / {
-                  proxy_pass http://[ip-address]:[port-number];
-                  proxy_pass_request_headers on;
-                  proxy_set_header Host $host;
-                  proxy_set_header X-Real-IP $remote_addr;
-                  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                  proxy_set_header X-Forwarded-Proto $scheme;
-                  proxy_set_header X-Forwarded-Host $http_host;
-                  proxy_set_header Upgrade $http_upgrade;
-                  proxy_set_header Connection $http_connection;
-                  proxy_buffering off;
-                }
-            }
-            ```
+### Configurations
++ Please refer to [Configurations](configurations.md) for a full list of (testing/tested) nginx configuration settings
 
 ## Resources
 
