@@ -41,9 +41,11 @@ The services found here are all generally useful tools and utilities used in a h
 - sqlite-browser : WebGUI Database Management System
     - author
         + linuxserver
+- sqlite-web : A WebUI for SQLite
 - syncthing : Self-hosted file synchronization service
 - tailscale : Tailscale daemon for the tunnel Mesh network VPN service based on Wireguard VPN without the need to port forward
 - unbound : DNS Resolver
 - uptime kuma : Monitoring utility
 - wireguard : VPN server
 - yt-dlp-webui : Self-hosted yt-dlp Web UI
+- youtubedl-material : A youtube-dl/yt-dlp WebUI

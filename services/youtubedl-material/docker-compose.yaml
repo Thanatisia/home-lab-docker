@@ -1,0 +1,51 @@
+# Docker-compose for
+# YouTubeDL-Material: YoutubeDL-Material is a Material Design frontend for youtube-dl. It's coded using Angular 15 for the frontend, and Node.js on the backend.
+# Service Author: Tzahi12345
+# Service Name: YoutubeDL
+# URL: https://github.com/Tzahi12345/YoutubeDL-Material
+# Docker URL: 
+#
+# [Resources]
+# Official Docs: 
+# DockerHub: https://hub.docker.com/r/tzahi12345/youtubeld-material
+# Default Settings: 
+# 
+# [Documentations]
+# - Environemnt Variables
+#
+# [Supporting Services]
+#
+# [Notes]
+# - Please read the README for more information
+
+version: '3.7'
+
+services:
+  youtubedl-material:
+    image: tzahi12345/youtubedl-material:latest
+    container_name: youtubedl-material
+    restart: unless-stopped
+    environment:
+      # Environment Variables
+      ## General
+      - TZ=Asia/Singapore # Set your Time zone
+      ## ytdlp Database and Configurations
+      - ytdl_use_local_db='true'
+      - write_ytdl_config='true'
+    # env_file: ".env" # Uncomment this if you want to use the .env file
+    ports:
+      # Port forward/translate from host system port to container port
+      # [host-system-port]:[container-port]
+      - 8084:17442 # The HTTP port
+      # - 443:443 # The HTTPS port
+    volumes:
+      # Mount volumes from host system volume to container volume
+      # [host-system-volume]:[container-volume]:[permission]
+      ## Configuration
+      - "./youtubedl-material/appdata:/app/appdata" # Media and Videos folder
+      - "./youtubedl-material/audio:/app/audio" # Audio folder
+      - "./youtubedl-material/video:/app/video" # Video folder
+      - "./youtubedl-material/subscriptions:/app/subscriptions" # Subscriptions folder
+      - "./youtubedl-material/users:/app/users" # User data folder
+
+  

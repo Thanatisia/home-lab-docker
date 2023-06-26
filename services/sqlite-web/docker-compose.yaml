@@ -1,0 +1,20 @@
+# Docker-compose for SQLite Web UI by coleifer
+version: "3.7"
+services:
+  sqlite-web:
+    image: coleifer/sqlite-web
+    container_name: "sqlite-web"
+    restart: unless-stopped
+    environment:
+      ## Environment Variables
+      # You can also use 'env_file:' to use an external environment file
+      - SQLITE_DATABASE=db_filename.db # Specify the target SQLite database
+    ports:
+      ## Port mapping/forward host system port to container port
+      # - {ip-address}:[host-system-port]:[container-port]
+      - "8080:8080"
+    volumes:
+      ## Mount volumes from host system into container volume
+      # - [host-system-volume]:[container-volume]:[permission]
+      - "./sqlite-web/data:/data" # Data folder
+
