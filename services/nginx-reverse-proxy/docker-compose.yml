@@ -15,7 +15,9 @@ services:
         - ./nginx/backend-not-found.html:/usr/share/nginx/html/backend-not-found.html # Error 404 page
         - ./nginx/backend-not-found.html:/var/www/html/backend-not-found.html # Error 404 page
         - ./nginx/includes:/etc/nginx/includes # Additional config files to use with default.conf
-        - ./nginx/ssl:/etc/ssl/certs/nginx/ # SSL Certification (Optional)
+        ## SSL/TLS Encryption files
+        - ./nginx/ssl/[ssl-cert].crt:/etc/ssl/certs/nginx/[ssl-cert].crt # SSL Certification (Optional)
+        - ./nginx/ssl/[private-key].key:/etc/ssl/certs/nginx/[private-key].key # Private Key generated with the SSL/TLS certificate (Optional)
       ports:
           # Port forwarding the host system's port to the container's port
           # [host system port]:[container port]
