@@ -9,12 +9,20 @@ The services found here are all generally useful tools and utilities used in a h
 ```
 
 ## Services List
+### Elemental
+```
+These services are all standalone projects that requires no additional dependencies, and 
+can be used to mix and match with other images as optional dependencies
+```
 - adguard : Adblocker service
 - apache : Web Server
 - caddy : A powerful, enterprise-ready, open source web/proxy/reverse proxy server alternative to Nginx/Traefik with automatic HTTPS written in Go(lang)
 - code-server : DevOps, Development utility, Web-based Code Editor
     - author
         + 32-bit : linuxserver
+- drawio : Self-hosted implementation of the online UML drawing utility of the same name
+    - author
+        + jgraph
 - duckdns : Dynamic DNS auto-updater service
 - file-browser : Utility
 - gitea : Self-hosted Git remote repository hosting service
@@ -49,3 +57,23 @@ The services found here are all generally useful tools and utilities used in a h
 - wireguard : VPN server
 - yt-dlp-webui : Self-hosted yt-dlp Web UI
 - youtubedl-material : A youtube-dl/yt-dlp WebUI
+
+### Compound
+```
+These services are generally bigger projects with extra features. 
+As such, these projects will contain various additional dependencies, such as
+    - Databases
+    - Storage services
+    - Networking 
+    - etc etc
+
+The individual dependency services can be found above in the 'Elemental' section
+
+However, on the flipside, this means that if you were to use these services in your project stack, lets say - MySQL Database Server
+    You do not need to deploy another instance of the database, you can just make use of that instance as a dependency for every other services.
+
+[Template]
+- service-name : service-description
+    - Dependencies
+        + dependency : Description
+```
