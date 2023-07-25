@@ -34,6 +34,9 @@ can be used to mix and match with other images as optional dependencies
 - jellyfin : Media Server
 - mariadb : Database Management System Utility
 - metube : Self-hosted yt-dlp Web UI
+- minecraft-server : Docker image that provides a Minecraft Server that will automatically download selected version at startup
+    - author
+        + itzg
 - mysql : Database Management System Utility
 - Nextcloud : NAS service
 - nginx-proxy-manager : Proxy server, Reverse proxy server
@@ -77,3 +80,6 @@ However, on the flipside, this means that if you were to use these services in y
     - Dependencies
         + dependency : Description
 ```
+- tubearchivist : Self-hosted YouTube Media Server with yt-dlp capability
+    - author
+        + tubearchivist
