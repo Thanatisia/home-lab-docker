@@ -38,6 +38,7 @@ can be used to mix and match with other images as optional dependencies
     - author
         + itzg
 - mysql : Database Management System Utility
+- nerd-font-patcher : A font patcher for the Nerd Fonts projects that patches targeted fonts with a high number of Glyph(icon)/Font Icon
 - Nextcloud : NAS service
 - nginx-proxy-manager : Proxy server, Reverse proxy server
 - nginx-reverse-proxy : Proxy server, Reverse proxy server, Web server
@@ -83,3 +84,7 @@ However, on the flipside, this means that if you were to use these services in y
 - tubearchivist : Self-hosted YouTube Media Server with yt-dlp capability
     - author
         + tubearchivist
+    - dependencies
+        + elasticsearch: For dynamic searching algorithms; FOSS
+        + redis: For Cache and ephemeral data storage
+
