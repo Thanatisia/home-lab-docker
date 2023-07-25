@@ -11,18 +11,19 @@ services:
       - "./tubearchivist/media:/youtube:rw"
       - "./tubearchivist/cache:/cache:rw"
     environment:
-      - ES_URL=http://192.168.1.3:9200     # needs protocol e.g. http and port
-      - REDIS_HOST=192.168.1.3          # don't add protocol
+      - ES_URL=http://[elasticsearch-domain]:9200     # needs protocol e.g. http and port
+      - REDIS_HOST=[redis-host-domain]          # don't add protocol
       - HOST_UID=1000
       - HOST_GID=1000
-      - TA_HOST=192.168.1.3         # set your host name
+      - TA_HOST=[tubearchive-host-name]     # set your host name
       - TA_USERNAME=tubearchivist           # your initial TA credentials
       - TA_PASSWORD=verysecret              # your initial TA credentials
       - ELASTIC_PASSWORD=verysecret         # set password for Elasticsearch
-      - TZ=Asia/Singapore                 # set your time zone
+      - TZ=[Region/City]                    # set your time zone
     depends_on:
       - archivist-es
       - archivist-redis
+
   archivist-redis:
     image: redis/redis-stack-server
     container_name: archivist-redis
@@ -33,6 +34,7 @@ services:
       - "./tubearchivist/redis:/data:rw"
     depends_on:
       - archivist-es
+
   archivist-es:
     image: bbilly1/tubearchivist-es         # only for amd64, or use official es 8.7.0
     container_name: archivist-es
