@@ -1,0 +1,9 @@
+[submodule "authors/Thanatisia/novnc/novnc-startup"]
+	path = authors/Thanatisia/novnc/novnc-startup
+	url = https://github.com/Thanatisia/novnc-startup
+[submodule "authors/Thanatisia/node-web-server"]
+	path = authors/Thanatisia/node-web-server
+	url = https://github.com/Thanatisia/node-web-server
+[submodule "authors/Thanatisia/novnc-startup"]
+	path = authors/Thanatisia/novnc-startup
+	url = https://github.com/Thanatisia/novnc-startup
