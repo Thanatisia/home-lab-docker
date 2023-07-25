@@ -1,0 +1,14 @@
+# Docker-compose for
+# Nerd Fonts Patcher in docker
+# Image: nerdfonts/patcher
+version: "3.7"
+services:
+  nerd-font-patcher:
+    # Nerd-font manual patcher docker
+    image: nerdfonts/patcher
+    container_name: "nerd-font-patcher"
+    volumes:
+      ## Mount/Map host system volume to container volume
+      ## [host-system-volume]:[container-volume]:[permissions]
+      - "./nerdfonts/fonts/in:/in" # Nerd Fonts Patcher Input folder
+      - "./nerdfonts/fonts/out:/out" # Nerd Fonts Patcher Output folder
