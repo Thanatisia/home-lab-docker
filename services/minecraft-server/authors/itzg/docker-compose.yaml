@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  minecraft-server:
+    image: itzg/minecraft-server
+    container_name: minecraft-server
+    restart: unless-stopped
+    ## Environment Variables
+    environment:
+      EULA: "TRUE" # Automatically accept EULA
+    ports:
+      ## Port forward/translate/map host system port to container port
+      ## [host-ip-address]:[host-system-port]:[container-port]
+      - "25565:25565"
+    volumes:
+      ## Mount/Map Volumes from host system to container volume
+      ## [host-system-volume]:[container-volume]:[permissions]
+      - "./minecraft-server/data:/data"
+
