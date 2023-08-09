@@ -24,6 +24,9 @@ can be used to mix and match with other images as optional dependencies
     - author
         + jgraph
 - duckdns : Dynamic DNS auto-updater service
+- excalidraw : Network Diagram and Drawing Tool
+    - author
+        + excalidraw
 - file-browser : Utility
 - gitea : Self-hosted Git remote repository hosting service
 - guacamole : Network-based Browser-based Remote Desktop Protocol/utility
