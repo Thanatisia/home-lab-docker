@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  archivebox:
+    # image: archivebox/archivebox
+    image: ${DOCKER_IMAGE:-archivebox/archivebox:dev}
+    container_name: "archivebox"
+    restart: unless-stopped
+    environment:
+      ## Environment Variables and Options to tweak
+      - PUBLIC_INDEX=True          # default: True  whether anon users can view index
+      - PUBLIC_SNAPSHOTS=True      # default: True  whether anon users can view pages
+      - PUBLIC_ADD_VIEW=True      # default: False whether anon users can add new URLs
+    ports:
+      ## Port Forward/Translate from host system port to container port 
+      ## [ip-address]:[host-system-port]:[container-port]
+      - "8000:8000"
+    volumes:
+      ## Mount volumes/folders from host system into container 
+      ## [host-system-volume]:[container-volume]:[permissions]
+      - "./archivebox/data:/data"
+

@@ -16,6 +16,9 @@ can be used to mix and match with other images as optional dependencies
 ```
 - adguard : Adblocker service
 - apache : Web Server
+- archivebox : Open Source, self-hosted Web Archiving solution
+    - author
+        + archivebox
 - caddy : A powerful, enterprise-ready, open source web/proxy/reverse proxy server alternative to Nginx/Traefik with automatic HTTPS written in Go(lang)
 - code-server : DevOps, Development utility, Web-based Code Editor
     - author
