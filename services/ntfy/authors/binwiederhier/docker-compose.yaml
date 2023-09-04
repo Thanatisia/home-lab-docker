@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  ntfy:
+    image: binwiederhier/ntfy
+    container_name: ntfy
+    restart: unless-stopped
+    environment:
+      ## Parse Environment Variables
+      - TZ=UTC # Optional: set desired timezone
+    user: ${UID}:${GID} # Optional; Replace with your own user ID (UID)/group ID (GID)
+    ports:
+      ## Port forward/translate/map from host system port to container port
+      ## [ip-address]:[host-system-port]:[container-port]
+      - 8082:80
+    volumes:
+      ## Mount volumes from host system into container
+      ## [host-system-volume]:[container-volume]:[permissions]
+      - /var/cache/ntfy:/var/cache/ntfy # For persistent message cache
+      - /etc/ntfy:/etc/ntfy
+    command:
+      - serve

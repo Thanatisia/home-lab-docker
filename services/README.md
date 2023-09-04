@@ -52,6 +52,9 @@ can be used to mix and match with other images as optional dependencies
 - nginx-proxy-manager : Proxy server, Reverse proxy server
 - nginx-reverse-proxy : Proxy server, Reverse proxy server, Web server
 - nodejs : DevOps, Development utility, web server
+- ntfy.sh : Simple HTTP-based pub-sub notification service that allows you to send push notifications to your phone or desktop using PUT/POST
+    - author
+        + binwiederhier
 - phpmyadmin : A widely-used Database Management System WebUI made in php
 - pi-hole : DNS server, DNS sinkhole, Firewall
 - portainer : A Docker container management platform
@@ -67,6 +70,9 @@ can be used to mix and match with other images as optional dependencies
 - tailscale : Tailscale daemon for the tunnel Mesh network VPN service based on Wireguard VPN without the need to port forward
 - unbound : DNS Resolver
 - uptime kuma : Monitoring utility
+- watchtower : Open Source automated docker container base image updater
+    - author
+        + containrrr
 - wireguard : VPN server
 - yt-dlp-webui : Self-hosted yt-dlp Web UI
 - youtubedl-material : A youtube-dl/yt-dlp WebUI
