@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    restart: unless-stopped
+    ports:
+      ## Port Forward/Translate/Map from Host system port to container port
+      ## [ip-address]:[host-system-port]:[container-port]
+      - "8081:8080"
+    volumes:
+      ## Mount volume from host system into container 
+      ## [host-system-volume]:[container-volume]:[permissions]
+      - /var/run/docker.sock:/var/run/docker.sock # Mount the host docker socket file to the container docker socket file to establish synchronous connection between host and container
+

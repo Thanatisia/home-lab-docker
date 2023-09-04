@@ -67,6 +67,9 @@ can be used to mix and match with other images as optional dependencies
 - tailscale : Tailscale daemon for the tunnel Mesh network VPN service based on Wireguard VPN without the need to port forward
 - unbound : DNS Resolver
 - uptime kuma : Monitoring utility
+- watchtower : Open Source automated docker container base image updater
+    - author
+        + containrrr
 - wireguard : VPN server
 - yt-dlp-webui : Self-hosted yt-dlp Web UI
 - youtubedl-material : A youtube-dl/yt-dlp WebUI
