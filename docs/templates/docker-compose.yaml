@@ -4,23 +4,21 @@
 # Service Name: [service-name]
 # URL: [repository-url]
 # Documentations
-
 version: '3.5'
-
 services:
-  portainer:
+  [service-name]:
     image: [image]:latest
     container_name: [container-name]
     restart: [always|unless-stopped|never]
-    hostname: [your-hostname] # To explicitly specify hostname
+    # hostname: [your-hostname] # (OPTIONAL) To explicitly specify hostname
     # network_mode: host # (OPTIONAL) To use host network mode
+    # env_file: .env # (OPTIONAL) To specify a secret environment file instead of the environment variables label/tag
     environment:
-      - PUID=1000
-      - PGID=1000
+      # - PUID=1000
+      # - PGID=1000
     ports:
-      # Port forward/translate from host system port to container port
+      # Port forward/map/translate from host system port to container port
       # [host-system-port]:[container-port]
     volumes:
       # Mount volumes from host system volume to container volume
       # [host-system-volume]:[container-volume]:[permission]
-

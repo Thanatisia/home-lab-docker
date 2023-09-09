@@ -9,22 +9,13 @@
 just joking, I am just playing around with containerizing my self-host setup (traditionally install on bare metal).
 ```
 
-### Supporting Architectures
-+ maxwaldorf/guacamole    : AMD64 (x86_64), arm64v8
-+ pihole/pi-hole          : AMD64 (x86_64), armv7 and above, arm64v7 and above etc; Supporting armv6 as of 2023-03-14
-+ hwdsl2/ipsec-vpn-server : AMD64 (x86_64), armv7 and above, arm64v7 and above etc.
-+ codercom/code-server    : amd64, arm64, amd64
-+ mvance/unbound          : AMD64 (x86_64) and above
-+ mvance/unbound-rpi      : armv7 and above; for Raspberry Pi
-
-### Notes
-- Do note that the following applications may have issues running on docker due to reasons such as incompatibility with the architecture (possible reasons will be specified below).
-    - Services
-        - codercom/code-server : Supports only amd64 and arm64 and x86_64/amd64 devices
-            + For ARM 32-bit (i.e. armvhf) support : use 'linuxserver/code-server'
-        + maxwaldorf/guacamole : works for x86_64 and arm64v8, no support for 32-bits (armvhf); Tested - Resulted in "does not have matching manifest list for arm/v7" error
-        + unbound(-rpi) : Incompatible with ARMv6 - container will keep stopping and running/restarting; only ARMv7 and above, AMD64, x86_64 etc.
-        + hwdsl2  : Incompatible with ARMv6 - container will keep stopping and running/restarting; only ARMv7 and above, AMD64, x86_64 etc.
+### Architectures
++ AMD64  : Generic 64-bit CPU architecture; Equals to x86_64
++ x86    : 32-bit CPU architecture
++ x86_64 : Generic 64-bit CPU architecture
++ arm    : 32-bit ARM; arm/v6/v7/v8
++ arm64  : 64-bit ARM; arm64/v7/v8
++ armvhf : 32-bit ARM
 
 ### Quickstart Guide
 #### Folders
@@ -62,124 +53,18 @@ just joking, I am just playing around with containerizing my self-host setup (tr
 
 ## Setup
 ### Pre-Requisites
-- If using on a Hypervisor
+- (Optional) If using on a Hypervisor
     - VirtualBox
         + Setup NATNetwork for inter-vm network communication
         + Add a new Bridge network adapter in the network of the server Virtual Machine
-
-- Files to edit
-    - Production
-        - docker-compose.yaml
-            - heimdall
-                - Add environment variables
-                    ```yaml
-                    ...
-                    environment:
-                        - TZ=Region/City
-                    ...
-                    ```
-            - sambafs
-                - Add environment variables
-                    ```yaml
-                    ...
-                    environment:
-                        - TZ=Region/City
-                    ...
-                    ```
-            - nginx-proxy-manager
-                - Add environment variables
-                    ```yaml
-                    ...
-                    environment:
-                        - TZ=Region/City
-                    ...
-                    ```
-            - pihole
-                - Add environment variables
-                    ```yaml
-                    ...
-                    environment:
-                        - TZ=Region/City
-                    ...
-                    ```
-        - ipsec-vpn
-            - vpn.env : Please edit the [VPN IPSEC Private Secret Key (PSK)], the [VPN Username] and the [VPN Password] here. 
-                - Remove this file from this folder and comment out 'vpn.env' from the docker-compose file to randomly generate your VPN credentials
-                    + Refer to the logs for your credentials
-                        ```console
-                        docker logs ipsec-vpn-server
-                        ```
-        - nginx
-            + default.conf : The Nginx Proxy/WebServer default (main) configurations file, nginx will read for all settings here
-            - etc/hosts : Your /etc/hosts file containing the recognized domain name to IP address mappings for your server.
-            - includes/ : Your server includes/dependencies are located here.
-                - proxy.conf : The Proxy server configurations file used by Nginx proxy server
-                - ssl.conf : The SSL configurations file used by Nginx for indicating TLS/SSL Encryption parameters when accessing via HTTPS (port 443)
-            - ssl/ : A dedicated SSL Certificate and Private Key folder; please read the README found here if you are setting up HTTPS
-            - www/ : This folder contains your webpages or websites if you are self-hosting using nginx as a webserver
-        - samba
-            - user_mgmt.sh : Specify your username and password in the variable above to create in the container
-            - config/ : Contains your samba configurations
-                + smb.conf : Your samba configurations file; Used in a samba bare metal config (/etc/samba/smb.conf) - State your samba network shared drive specifications here
 
 ### Dependencies
 + docker : for...docker and dockerfile
 + docker-compose : for running docker-compose
 
-## Services I am using
-```
-The following are some services i'm using at the moment.
-
-You can use this template if you would like to make your own
-```
-+ code-server : VS Code Server
-+ guacamole : Remote Access Gateway
-+ heimdall : Dashboard
-- IPSec VPN Server
-    - Libreswan + xl2tpd (L2TP Daemon)
-        + hwdsl2
-+ jellyfin : Media Server
-- NAS File Server
-    - Samba
-        - My Samba uses the following pre-requisites
-            + Image: Alpine Linux
-	- Reasons
-	    + Lightweight
-+ pi-hole : DNS Server (Resolver), DNS Sinkhole, Firewall, Router
-+ [file-browser](https://github.com/filebrowser/filebrowser) : Web-based (WebUI) File Manager for your Home Lab Server
-    - References
-        + [filebrowser - installation](https://filebrowser.org/installation)
-
 ## Documentation
-### Code Server
-- [VS Code Server](services/code-server)
-    - [32-bit docker-compose](services/code-server/32-bit/docker-compose.yaml)
-    - [64-bit docker-compose](services/code-server/64-bit/docker-compose.yaml)
-
-### Dashboard
-- [Heimdall](services/heimdall)
-    - [docker-compose]
-
-### IPSec VPN Server
-#### Libreswan + xl2tpd
-- [hwdsl2](services/ipsec-vpn-server/hwdsl2)
-    - [docker-compose.yaml](services/ipsec-vpn-server/hwdsl2/docker-compose.yaml)
-
-### Media Server
-- [jellyfin](services/jellyfin)
-    - [docker-compose.yaml](services/jellyfin/docker-compose.yaml)
-
-### NAS File Server
-- [Samba](services/samba-file-server)
-    - [docker-compose.yaml](services/samba-file-server/docker-compose.yaml)
-    - [Dockerfile](services/samba-file-server/samba/Dockerfile)
-
-### DNS Server
-- pi-hole
-    - [docker-compose.yaml](services/pi-hole/docker-compose.yaml)
        
-
-## Usage
+### Usage
 - Startup docker-compose environment with building of Dockerfiles
     - Notes
         + Certain docker containers (i.e. my samba share) are built from scratch using Dockerfile and docker-compose, thus you need to run build
@@ -224,10 +109,15 @@ You can use this template if you would like to make your own
     docker logs [container-name]
     ```
 
+- Inspect docker image/container details
+    ```console
+    docker inspect [image/container-name]
+    ```
+
 - Jump into container
     + Useful for checking container files for clues
     ```console
-    docker exec -it [container-name] /bin/bash
+    docker exec -it [container-name] [shell]
     ```
 
 - Restart only a specific container
@@ -243,7 +133,8 @@ You can use this template if you would like to make your own
 
 ## Wiki
 
+## Resources
+
 ## References
-+ [Dockerhub - Maxwaldorf/guacamole]€@7€@7(https://hub.docker.com/r/maxwaldorf/guacamole)
 
-
+## Remarks
