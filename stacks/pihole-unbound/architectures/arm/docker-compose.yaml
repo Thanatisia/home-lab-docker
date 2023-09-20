@@ -1,0 +1,70 @@
+version: "3.7"
+
+services:
+    # Pi-hole DNS Server, Resolver, Sinkhole, Firewall, Router
+    pihole:
+      container_name: pihole
+      image: pihole/pihole:latest
+      restart: always
+      ports:
+        - "53:53/tcp"
+        - "53:53/udp"
+        - "67:67/udp"
+        - "8080:80/tcp"
+        - "4443:443/tcp"
+      environment:
+        # TZ: 'Region/City' # This is the timezone
+        ### Timezone and locale
+        # TZ: 'Region/City'
+        ### WebUI Environment Variables
+        # WEBPASSWORD: "Password-here"
+        # WEBPASSWORD_FILE: ./pihole/secrets/WebPasswords # WebUI Password File; Place your WEBPASSWORD secret here; Related to 'WEBPASSWORD'
+        ### FTL DNS
+        # FTLCONF_LOCAL_IPV4: [your-server-ipv4-address] ### Set your server IP here
+        PIHOLE_DNS_: "172.28.0.3#53" # Your Pihole custom DNS addresses
+        # ServerIP: [your-server-ipv4-address]
+      volumes:
+        - './pihole/etc-pihole/:/etc/pihole/'
+        - './pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/'
+      dns:
+        - 8.8.8.8
+        - 8.8.4.4
+      cap_add:
+        - NET_ADMIN
+      networks:
+        ## Specify VLAN group name to attach
+        dns_net:
+          ## Specify VLAN group properties
+          ipv4_address: 172.28.0.2 # Set static IP address
+
+    unbound:
+      image: 'mvance/unbound-rpi:latest'
+      container_name: 'unbound'
+      ports:
+        - "5335:53/tcp"
+        - "5335:53/udp"
+        # - "5335:5335/tcp" # TCP port number for Unbound DNS resolver; Corresponds to the port number specified in the unbound configuration file
+        # - "5335:5335/udp" # UDP port number for Unbound DNS resolver; Corresponds to the port number specified in the unbound configuration file
+      environment:
+        - TZ=Asia/Singapore
+      restart: unless-stopped
+      volumes:
+        - "./unbound.d/etc-unbound/unbound/:/etc/unbound"
+      networks:
+        ## Specify VLAN group name to attach
+        dns_net:
+          ## Specify VLAN group properties
+          ipv4_address: 172.28.0.3 # Set static IP address
+
+# Explanation
+## Custom bridge network is necessary to join the 2 containers together so that they can communicate
+networks:
+  ## Specify VLAN group name
+  dns_net:
+    ## Specify VLAN group properties
+    name: dns_net
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16 # Set VLAN subnet network address with prefix
+
