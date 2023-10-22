@@ -41,6 +41,9 @@ can be used to mix and match with other images as optional dependencies
 - homer : Dashboard
 - ipsec-vpn-server : VPN Server
 - jellyfin : Media Server
+- jupyter-base-notebook : aka Jupyter Notebooks; collection of various variant of the python WebUI REPL server; This is the 'base-notebook' image
+    - author
+        + jupyter
 - mariadb : Database Management System Utility
 - metube : Self-hosted yt-dlp Web UI
 - minecraft-server : Docker image that provides a Minecraft Server that will automatically download selected version at startup
