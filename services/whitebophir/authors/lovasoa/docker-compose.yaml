@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  wbo:
+    image: lovasoa/wbo:latest
+    container_name: wbo
+    ports:
+      ## Port Forward/Translate/Map from Host System to Container
+      ## [ip-address]:[host-system-port]:[container-port]
+      - "5001:80"
+    volumes:
+      ## Mount volume from host system into container
+      ## [host-system-volume]:[container-volume]:[permission]
+      - "${PWD}/wbo-boards:/opt/app/server-data"
+
