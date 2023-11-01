@@ -30,6 +30,9 @@ can be used to mix and match with other images as optional dependencies
     - author
         + jgraph
 - duckdns : Dynamic DNS auto-updater service
+- emulatorjs : Self-Hosted Web/browser-based retro emulation platform powered by libretro (used/created by retroarch)
+    - author
+        + linuxserver
 - excalidraw : Network Diagram and Drawing Tool
     - author
         + excalidraw

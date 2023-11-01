@@ -1,0 +1,25 @@
+version: "3.7"
+services:
+  emulatorjs:
+    image: lscr.io/linuxserver/emulatorjs:latest
+    container_name: emulatorjs
+    restart: unless-stopped
+    environment:
+      ## Environment Variables
+      - "PUID=1000"
+      - "PGID=1000"
+      - "TZ=Asia/Singapore"
+      - "SUBFOLDER=/"
+    ports:
+      ## Port Forward/Translate/Map from host system to container
+      ## [ip-address]:[host-system-port]:[container-port]
+      - "3000:3000" # 
+      - "80:80" # For WebUI
+      - "4001:4001" # Optional
+    volumes: 
+      ## Mount volume from host system into container
+      ## [host-systemv-volume]:[container-volume]:[permission]
+      - "/path/to/config:/config" # Place your configurations here
+      - "/path/to/data:/data" # Place your data here
+      - "/path/to/roms:/data/[your-emulator]/roms" # Place your emulator ROMs
+
