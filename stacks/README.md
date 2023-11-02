@@ -12,6 +12,11 @@ Note:
 ```
 
 ## Stack List
+- Nextcloud-LetsEncrypt-MySQL : NextCloud with MySQL (Database) and Let's Encrypt (SSL service)
+    - Services
+        + nextcloud : Self-hosted Cloud file server
+        + letsencrypt : SSL service
+        + mysql : SQL Database server
 - pihole-unbound : DNS Sinkhole/Server + DNS Resolver combination
     - Services:
         + pihole : DNS Sinkhole/Server

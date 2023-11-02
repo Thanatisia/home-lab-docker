@@ -111,6 +111,10 @@ However, on the flipside, this means that if you were to use these services in y
     - Dependencies
         + dependency : Description
 ```
+- bookstack : Documentation/Wiki static site generator platform
+    - author
+        + linuxserver
+        + solidnerd
 - tubearchivist : Self-hosted YouTube Media Server with yt-dlp capability
     - author
         + tubearchivist

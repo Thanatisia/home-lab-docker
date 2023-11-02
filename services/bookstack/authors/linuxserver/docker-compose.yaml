@@ -1,0 +1,24 @@
+# Dependencies
+# - Database: MySQL/MariaDB
+
+version: "3.7"
+services:
+  bookstack:
+    image: lscr.io/linuxserver/bookstack:latest
+    container_name: bookstack
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - APP_URL=http://[domain|ip]:[port-number] # Application URL; location to access
+      - DB_HOST="url|ip"  # Set this as the Database host's URL/IP if you are using an external server
+      - DB_PORT=3306 # Database port (Default: 3306)
+      - DB_USER=<db-username> # Database username
+      - DB_PASS=<db-password> # Database Password
+      - DB_DATABASE=<db-name> # Database name
+    volumes:
+      - "/path/to/app/data:/config"
+    ports:
+      - 80:80
+
+
