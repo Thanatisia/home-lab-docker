@@ -30,6 +30,9 @@ can be used to mix and match with other images as optional dependencies
     - author
         + jgraph
 - duckdns : Dynamic DNS auto-updater service
+- emulatorjs : Self-Hosted Web/browser-based retro emulation platform powered by libretro (used/created by retroarch)
+    - author
+        + linuxserver
 - excalidraw : Network Diagram and Drawing Tool
     - author
         + excalidraw
@@ -41,6 +44,15 @@ can be used to mix and match with other images as optional dependencies
 - homer : Dashboard
 - ipsec-vpn-server : VPN Server
 - jellyfin : Media Server
+- jupyter-base-notebook : aka Jupyter Notebooks; collection of various variant of the python WebUI REPL server; This is the 'base-notebook' image
+    - author
+        + jupyter
+- jupyter-datascience-notebook : aka Jupyter Notebooks; collection of various variant of the python WebUI REPL server; This is the 'datascience-notebook' image
+    - author
+        + jupyter
+- jupyter-minimal-notebook : aka Jupyter Notebooks; collection of various variant of the python WebUI REPL server; This is the 'minimal-notebook' image
+    - author
+        + jupyter
 - mariadb : Database Management System Utility
 - metube : Self-hosted yt-dlp Web UI
 - minecraft-server : Docker image that provides a Minecraft Server that will automatically download selected version at startup
@@ -73,6 +85,9 @@ can be used to mix and match with other images as optional dependencies
 - watchtower : Open Source automated docker container base image updater
     - author
         + containrrr
+- whitebophir : Open Source, Self-hosted Collaborative Whiteboard alternative
+    - author
+        + lovasoa
 - wireguard : VPN server
 - yt-dlp-webui : Self-hosted yt-dlp Web UI
 - youtubedl-material : A youtube-dl/yt-dlp WebUI
@@ -96,6 +111,10 @@ However, on the flipside, this means that if you were to use these services in y
     - Dependencies
         + dependency : Description
 ```
+- bookstack : Documentation/Wiki static site generator platform
+    - author
+        + linuxserver
+        + solidnerd
 - tubearchivist : Self-hosted YouTube Media Server with yt-dlp capability
     - author
         + tubearchivist
