@@ -60,6 +60,7 @@ can be used to mix and match with other images as optional dependencies
         + itzg
 - mysql : Database Management System Utility
 - nerd-font-patcher : A font patcher for the Nerd Fonts projects that patches targeted fonts with a high number of Glyph(icon)/Font Icon
+- netbootxyz : A PXE a network boot loader/service that lets you install or boot to any operating system simply by booting to the network
 - Nextcloud : NAS service
 - nginx-proxy-manager : Proxy server, Reverse proxy server
 - nginx-reverse-proxy : Proxy server, Reverse proxy server, Web server
