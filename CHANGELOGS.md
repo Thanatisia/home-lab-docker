@@ -15,3 +15,7 @@
     - Updated document 'README.md' in 'services' with the new services
     - Updated document 'README.md' in 'stacks' with new stacks
 
+#### 2250H
+- New
+    - Added folders 'pihole' and 'unbound.d' to 'stacks/pihole-unbound-wireguard/architectures/arm'
+        
