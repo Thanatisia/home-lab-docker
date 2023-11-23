@@ -41,6 +41,9 @@ can be used to mix and match with other images as optional dependencies
 - guacamole : Network-based Browser-based Remote Desktop Protocol/utility
 - headscale : Self-hosted master node/server implementation of the tailscale mesh network project
 - heimdall : Dashboard
+- home-assistant : Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts.
+    - author
+        + home-assistant
 - homer : Dashboard
 - ipsec-vpn-server : VPN Server
 - jellyfin : Media Server

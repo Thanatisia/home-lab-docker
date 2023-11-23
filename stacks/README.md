@@ -21,5 +21,8 @@ Note:
     - Services:
         + pihole : DNS Sinkhole/Server
         + unbound : DNS Resolver; similar to, and can be replaced with bind9
-
-
+- pihole-unbound-wireguard : DNS Sinkhole/Server + DNS Resolver + VPN Server combination
+    - Services:
+        + pihole : DNS Sinkhole/Server
+        + unbound : DNS Resolver; similar to, and can be replaced with bind9
+        + wireguard : VPN Server; can be replaced with IPSec or OpenVPN

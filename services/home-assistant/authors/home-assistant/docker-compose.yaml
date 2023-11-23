@@ -1,0 +1,15 @@
+# Home Assistant
+version: "3.7"
+services:
+  home-assistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: home-assistant
+    restart: unless-stopped
+    network_mode: host
+    # environment:
+      ## Environment Variables
+      # - TZ=UTC/Etc
+    volumes:
+      ## Mount volumes from host system into container
+      ## [host-system-volume]:[container-volume]:[permissions]
+      - "${PWD}/home-assistant/config:/config"
