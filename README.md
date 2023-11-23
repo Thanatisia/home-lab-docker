@@ -6,7 +6,14 @@
 	EVERYTHING MUST BE CONTAINERIZED!
 	Dotfiles, Configurations, Installers
 
-just joking, I am just playing around with containerizing my self-host setup (traditionally install on bare metal).
+Initially created just to test out containerizing my self-host setup (traditionally install on bare metal), 
+currently this is an all-in-one Docker repository to contain various 
+    - Servers, 
+    - Web Services, 
+    - Networking Protocols or 
+    - general services that can be ran on docker
+
+If it can be ran on docker, it should be added into the repository.
 ```
 
 ### Architectures
