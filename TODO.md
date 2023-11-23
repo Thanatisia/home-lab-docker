@@ -19,3 +19,48 @@ TODO List containing features, ideas, services to add into the backlog/pipeline
 ### Fix
 > List of pre-existing services that needs to be fixed due to broken, outdated or deprecated (to be replaced)
 
+## Migration
+### Folders to migrate
+> List of service directories to migrate into the current method of separation (project-name\authors\author-name\...)
++ Adguard
++ Apache
++ Archivebox
++ Caddy
++ Code Server
++ draw.io
++ duckdns
++ Filebrowser
++ Gitea
++ Guacamole
++ Headscale
++ Heimdall
++ Homer
++ IPsec VPN server
++ it-tools
++ Jellyfin
++ mariadb
++ metube
++ mysql
++ Nerd Font Patcher
++ Nextcloud
++ Nginx Proxy Manager (npm)
++ Nginx Reverse Proxy
++ NodeJS
++ phpmyadmin
++ pi-hole
++ pihole-with-unbound
++ portainer
++ postgresql
++ samba-file-server
++ scrypted
++ searx-ng
++ sqlite-browser
++ sqlite-web
++ syncthing
++ Tailscale
++ Unbound
++ Uptime Kuma
++ Wireguard
++ youtubedl-material
++ yt-dlp-webui
+
