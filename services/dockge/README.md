@@ -29,9 +29,10 @@ A fancy, easy-to-use and reactive self-hosted docker compose WebUI, stack-orient
 - Starting up
     ```console
     docker run -itd --name=dockge \
+        --restart=unless-stopped \
         -e "DOCKGE_STACKS_DIR=/opt/stacks" \
         -p "5001:5001" \
-        -v "${PWD}/dockge/app/data:/app/data" \
+        -v "/path/to/app/data:/app/data" \
         -v "/var/run/docker.sock:/var/run/docker.sock" \
         -v "/opt/stacks:/opt/stacks" \
         louislam/dockge:1
@@ -140,6 +141,12 @@ services:
       # - "/path/to/docker/container/root/directory:/opt/stacks"
       - "/opt/stacks:/opt/stacks" 
 ```
+
+### Notes and Findings
+1. The '/var/run/docker.sock' file is the docker socket file
+    + The docker socket file is created when docker is installed, and this socket file contains the state of the currently-running docker instance in the host
+    + Pass/Mount the docker socket file into the container to access the host system's docker instances even when inside a container
+    + You can pass/mount any socket files from the host system into the container to access that application's state
 
 ## Resources
 
