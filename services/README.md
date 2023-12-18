@@ -26,6 +26,9 @@ can be used to mix and match with other images as optional dependencies
 - code-server : DevOps, Development utility, Web-based Code Editor
     - author
         + 32-bit : linuxserver
+- dockge : A fancy, easy-to-use and reactive self-hosted docker compose WebUI, stack-oriented, application/service manager made by the creator of Uptime Kuma
+    - author
+        + louislam
 - drawio : Self-hosted implementation of the online UML drawing utility of the same name
     - author
         + jgraph
@@ -86,6 +89,8 @@ can be used to mix and match with other images as optional dependencies
 - tailscale : Tailscale daemon for the tunnel Mesh network VPN service based on Wireguard VPN without the need to port forward
 - unbound : DNS Resolver
 - uptime kuma : Monitoring utility
+    - author
+        + louislam
 - watchtower : Open Source automated docker container base image updater
     - author
         + containrrr
