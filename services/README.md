@@ -94,6 +94,9 @@ can be used to mix and match with other images as optional dependencies
 - watchtower : Open Source automated docker container base image updater
     - author
         + containrrr
+- wetty : WeTTY = Web + TTY, WeTTY is a Web Application terminal over HTTP and HTTPS.
+    - author
+        + wettyoss
 - whitebophir : Open Source, Self-hosted Collaborative Whiteboard alternative
     - author
         + lovasoa

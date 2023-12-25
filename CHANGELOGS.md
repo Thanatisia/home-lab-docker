@@ -3,6 +3,7 @@
 ## Table of Contents
 + [2023-11-23](#2023-11-23)
 + [2023-12-18](#2023-12-18)
++ [2023-12-25](#2023-12-25)
 
 ## Logs
 ### 2023-11-23
@@ -31,4 +32,10 @@
 - Updates
     - Updated document 'README.md' in 'dockge' with Notes and Findings
 
+### 2023-12-25
+#### 2125H
+- New
+    - Added new service 'wettyoss/wetty'
+- Updates
+    - Updated document 'README.md' in 'services' with the new services 
 

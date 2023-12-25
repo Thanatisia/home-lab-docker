@@ -1,0 +1,16 @@
+# Docker compose file
+version: "3.7"
+services:
+  wetty:
+    image: wettyoss/wetty
+    container_name: wetty
+    restart: unless-stopped
+    ports:
+      ## Port forward/translate/map from host system into container
+      ## [ip-address]:[host-port]:[container-port]
+      - 3000:3000 # HTTP WebUI
+    command:
+      ## Parse the following options into the application here
+      - --base=/                # Set the base URL to access here; i.e. 'http(s)://ssh-host-ip-domain:3000/' if --base=/
+      - --ssh-host=[target-ip-domain] # Set your target hostname/ip address that you want to SSH into here
+
