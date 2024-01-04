@@ -47,6 +47,9 @@ can be used to mix and match with other images as optional dependencies
 - home-assistant : Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts.
     - author
         + home-assistant
+- homepage : A highly customizable homepage (or startpage / application dashboard) Web Application with Docker and service API integrations.
+    - author
+        + gethomepage
 - homer : Dashboard
 - ipsec-vpn-server : VPN Server
 - jellyfin : Media Server

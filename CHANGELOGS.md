@@ -4,6 +4,7 @@
 + [2023-11-23](#2023-11-23)
 + [2023-12-18](#2023-12-18)
 + [2023-12-25](#2023-12-25)
++ [2024-01-04](#2024-01-04)
 
 ## Logs
 ### 2023-11-23
@@ -36,6 +37,13 @@
 #### 2125H
 - New
     - Added new service 'wettyoss/wetty'
+- Updates
+    - Updated document 'README.md' in 'services' with the new services 
+
+### 2024-01-04
+#### 2305H
+- New 
+    - Added new service 'gethomepage/homepage' : A highly customizable homepage (or startpage / application dashboard) Web Application with Docker and service API integrations.
 - Updates
     - Updated document 'README.md' in 'services' with the new services 
 
