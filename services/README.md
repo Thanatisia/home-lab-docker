@@ -54,6 +54,9 @@ can be used to mix and match with other images as optional dependencies
 - homer : Dashboard
 - ipsec-vpn-server : VPN Server
 - jellyfin : Media Server
+- jenkins : Continuous Integration and Continuous Delivery (CI/CD) Pipeline automation server
+    - author
+        + jenkins
 - jupyter-base-notebook : aka Jupyter Notebooks; collection of various variant of the python WebUI REPL server; This is the 'base-notebook' image
     - author
         + jupyter

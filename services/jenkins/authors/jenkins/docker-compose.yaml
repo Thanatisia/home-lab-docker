@@ -1,0 +1,18 @@
+# Docker-compose for
+# CI/CD Server: jenkins
+version: "3.7"
+services:
+  jenkin:
+    image: jenkins/jenkins:lts
+    container_name: "jenkins"
+    restart: unless-stopped
+    ports:
+      ## Map host system port to container port
+      ## [host-ip]:[host-system-port]:[container-port]
+      - "8081:8080" # WebUI
+      - "50000:50000" # For connecting agents to the controller through an inbound TCP connection
+    volumes:
+      ## Map volume from host system to container
+      ## [host-system-volume]:[container-volume]:[permissions]
+      - "${PWD}/jenkins/home:/var/jenkins_home" # Jenkins Home directory
+

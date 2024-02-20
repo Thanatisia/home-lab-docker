@@ -6,6 +6,7 @@
 + [2023-12-25](#2023-12-25)
 + [2024-01-04](#2024-01-04)
 + [2024-02-20](#2024-02-20)
++ [2024-02-21](#2024-02-21)
 
 ## Logs
 ### 2023-11-23
@@ -55,4 +56,11 @@
 
 - Updates
     - Updated 'README.md's of 'services/' and 'services/excalidraw/'
+
+### 2024-02-21
+#### 0018H
+- New
+    - Added new service 'jenkins/jenkins' : Continuous Integration and Continuous Delivery (CI/CD) Pipeline automation build server
+- Updates
+    - Updated document 'README.md' in 'services' with the new services 
 
