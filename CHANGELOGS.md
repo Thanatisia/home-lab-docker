@@ -5,6 +5,7 @@
 + [2023-12-18](#2023-12-18)
 + [2023-12-25](#2023-12-25)
 + [2024-01-04](#2024-01-04)
++ [2024-02-20](#2024-02-20)
 
 ## Logs
 ### 2023-11-23
@@ -46,4 +47,12 @@
     - Added new service 'gethomepage/homepage' : A highly customizable homepage (or startpage / application dashboard) Web Application with Docker and service API integrations.
 - Updates
     - Updated document 'README.md' in 'services' with the new services 
+
+### 2024-02-20
+#### 1645H
+- New
+    - Added new image author 'cavia' for service 'excalidraw' : Fork of the official image to build an image for ARM64
+
+- Updates
+    - Updated 'README.md's of 'services/' and 'services/excalidraw/'
 

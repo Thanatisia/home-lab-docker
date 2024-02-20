@@ -38,7 +38,8 @@ can be used to mix and match with other images as optional dependencies
         + linuxserver
 - excalidraw : Network Diagram and Drawing Tool
     - author
-        + excalidraw
+        + excalidraw : Official image; AMD64 only
+        + cavia : Custom ARM64 fork of the official image; outdated
 - file-browser : Utility
 - gitea : Self-hosted Git remote repository hosting service
 - guacamole : Network-based Browser-based Remote Desktop Protocol/utility
