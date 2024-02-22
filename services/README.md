@@ -134,6 +134,9 @@ However, on the flipside, this means that if you were to use these services in y
     - author
         + linuxserver
         + solidnerd
+- planka : A realtime kanban board for workgroups built with React and Redux.
+    - author
+        + plankanban
 - tubearchivist : Self-hosted YouTube Media Server with yt-dlp capability
     - author
         + tubearchivist

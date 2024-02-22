@@ -7,6 +7,7 @@
 + [2024-01-04](#2024-01-04)
 + [2024-02-20](#2024-02-20)
 + [2024-02-21](#2024-02-21)
++ [2024-02-23](#2024-02-23)
 
 ## Logs
 ### 2023-11-23
@@ -61,6 +62,13 @@
 #### 0018H
 - New
     - Added new service 'jenkins/jenkins' : Continuous Integration and Continuous Delivery (CI/CD) Pipeline automation build server
+- Updates
+    - Updated document 'README.md' in 'services' with the new services 
+
+### 2024-02-23
+#### 0016H
+- New
+    - Added new service 'plankanban/planka' : A realtime kanban board for workgroups built with React and Redux.
 - Updates
     - Updated document 'README.md' in 'services' with the new services 
 
