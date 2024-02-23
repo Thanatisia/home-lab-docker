@@ -95,6 +95,9 @@ can be used to mix and match with other images as optional dependencies
 - syncthing : Self-hosted file synchronization service
 - tailscale : Tailscale daemon for the tunnel Mesh network VPN service based on Wireguard VPN without the need to port forward
 - unbound : DNS Resolver
+- upsnap : A simple wake on lan web app written with SvelteKit, Go and PocketBase.
+    - author
+        + seriousm4x
 - uptime kuma : Monitoring utility
     - author
         + louislam

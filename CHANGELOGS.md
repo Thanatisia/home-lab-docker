@@ -72,3 +72,9 @@
 - Updates
     - Updated document 'README.md' in 'services' with the new services 
 
+#### 1355H
+- New
+    - Added new service 'seriousm4x/UpSnap' : A simple wake on lan web app written with SvelteKit, Go and PocketBase.
+- Updates
+    - Updated document 'README.md' in 'services' with the new services 
+
