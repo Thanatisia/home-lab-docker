@@ -8,6 +8,7 @@
 + [2024-02-20](#2024-02-20)
 + [2024-02-21](#2024-02-21)
 + [2024-02-23](#2024-02-23)
++ [2024-02-24](#2024-02-24)
 
 ## Logs
 ### 2023-11-23
@@ -77,4 +78,9 @@
     - Added new service 'seriousm4x/UpSnap' : A simple wake on lan web app written with SvelteKit, Go and PocketBase.
 - Updates
     - Updated document 'README.md' in 'services' with the new services 
+
+### 2024-02-24
+#### 1110H
+- Updates
+    - Updated 'README.md' in service 'plankanban/planka' with examples for connecting to remote postgresql server instances (so that you dont have to use a dedicated postgresql server container)
 

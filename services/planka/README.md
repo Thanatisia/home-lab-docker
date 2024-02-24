@@ -325,7 +325,10 @@ TZ=UTC
 
 #### Planka
 + `BASE_URL=http://[server-ip|domain]:[web-ui-port-number]` :  The WebUI Base URL
-+ `DATABASE_URL=postgresql://postgres@postgres/planka`      : The Database connection stream
+- `DATABASE_URL=postgresql://postgres@postgres/planka`      : The Database connection stream
+    - Examples
+        + Connect to a local instance            : `DATABASE_URL=postgresql://postgres@postgres/[database-name]`
+        + Connect to an existing remote instance : `DATABASE_URL=postgresql://[username]:[password]@[database-server-url]/[database-name]`
 + `SECRET_KEY=notsecretkey`                                 : Secret Key for communication to the database; generate the secret key using 'openssl rand -hex 64'
 
 + `TRUST_PROXY=0`        : Enable/Disable Proxy Trust
