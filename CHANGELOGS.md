@@ -9,6 +9,7 @@
 + [2024-02-21](#2024-02-21)
 + [2024-02-23](#2024-02-23)
 + [2024-02-24](#2024-02-24)
++ [2024-02-26](#2024-02-26)
 
 ## Logs
 ### 2023-11-23
@@ -83,4 +84,11 @@
 #### 1110H
 - Updates
     - Updated 'README.md' in service 'plankanban/planka' with examples for connecting to remote postgresql server instances (so that you dont have to use a dedicated postgresql server container)
+
+### 2024-02-26
+#### 0102H
+- New
+    - Added new service 'charmbracelet/vhs' : A screen recorder CLI utility that allows you to create terminal GIFs as code for integration testing and demoing your CLI tools.
+- Updates
+    - Updated document 'README.md' in 'services' with the new services 
 

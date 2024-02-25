@@ -101,6 +101,9 @@ can be used to mix and match with other images as optional dependencies
 - uptime kuma : Monitoring utility
     - author
         + louislam
+- vhs : A screen recorder CLI utility that allows you to create terminal GIFs as code for integration testing and demoing your CLI tools.
+    - author
+        + charmbracelet
 - watchtower : Open Source automated docker container base image updater
     - author
         + containrrr
