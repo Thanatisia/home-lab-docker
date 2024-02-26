@@ -92,3 +92,9 @@
 - Updates
     - Updated document 'README.md' in 'services' with the new services 
 
+#### 0113H
+- New
+    - Added new service 'mongo' : MongoDB is a Cross-Platform rich document-oriented NoSQL database and utilizes JSON-like documents with optional schemas.
+- Updates
+    - Updated document 'README.md' in 'services' with the new services 
+        

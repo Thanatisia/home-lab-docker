@@ -71,6 +71,9 @@ can be used to mix and match with other images as optional dependencies
 - minecraft-server : Docker image that provides a Minecraft Server that will automatically download selected version at startup
     - author
         + itzg
+- mongodb : MongoDB is a Cross-Platform rich document-oriented NoSQL database and utilizes JSON-like documents with optional schemas.
+    - author
+        + mongo
 - mysql : Database Management System Utility
 - nerd-font-patcher : A font patcher for the Nerd Fonts projects that patches targeted fonts with a high number of Glyph(icon)/Font Icon
 - netbootxyz : A PXE a network boot loader/service that lets you install or boot to any operating system simply by booting to the network
