@@ -97,4 +97,11 @@
     - Added new service 'mongo' : MongoDB is a Cross-Platform rich document-oriented NoSQL database and utilizes JSON-like documents with optional schemas.
 - Updates
     - Updated document 'README.md' in 'services' with the new services 
-        
+
+### 2024-02-27
+#### 1443H
+- New
+    - Added new service 'nixos/nix' : The Nix Package Manager is a standalone package manager that uses declarative configuration and containerization to create reproducibility and portability.
+- Updates
+    - Updated document 'README.md' in 'services' with the new services 
+

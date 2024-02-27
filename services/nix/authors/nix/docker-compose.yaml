@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  nix:
+    image: nixos/nix:latest
+    container_name: nix
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    volumes:
+      ## Mount volumes from host system into container
+      ## [host-system-volume]:[container-volume]:[permissions]
+      - ${PWD}/workdir:/workdir
+
+

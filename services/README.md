@@ -80,6 +80,9 @@ can be used to mix and match with other images as optional dependencies
 - Nextcloud : NAS service
 - nginx-proxy-manager : Proxy server, Reverse proxy server
 - nginx-reverse-proxy : Proxy server, Reverse proxy server, Web server
+- nix : The Nix Package Manager is a standalone package manager that uses declarative configuration and containerization to create reproducibility and portability.
+    - author
+        + nixos
 - nodejs : DevOps, Development utility, web server
 - ntfy.sh : Simple HTTP-based pub-sub notification service that allows you to send push notifications to your phone or desktop using PUT/POST
     - author
