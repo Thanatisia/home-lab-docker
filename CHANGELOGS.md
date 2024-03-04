@@ -10,6 +10,8 @@
 + [2024-02-23](#2024-02-23)
 + [2024-02-24](#2024-02-24)
 + [2024-02-26](#2024-02-26)
++ [2024-02-27](#2024-02-27)
++ [2024-03-04](#2024-03-04)
 
 ## Logs
 ### 2023-11-23
@@ -104,4 +106,9 @@
     - Added new service 'nixos/nix' : The Nix Package Manager is a standalone package manager that uses declarative configuration and containerization to create reproducibility and portability.
 - Updates
     - Updated document 'README.md' in 'services' with the new services 
+
+### 2024-03-04
+#### 1555H
+- New
+    + Added new author for service 'nix' - 'nixpkgs/nix' : Made and community-managed, this uses Rootfs image instead of BusyBox
 
