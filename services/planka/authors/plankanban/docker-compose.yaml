@@ -1,0 +1,71 @@
+# Docker-compose for planka kanban board
+version: "3.7"
+services:
+  planka:
+    image: ghcr.io/plankanban/planka:latest
+    restart: on-failure
+    volumes:
+      ## Mount volumes from host system into container
+      ## [host-system-volume]:[container-volume]:[permissions]
+      - ${PWD}/planka/app/public/user-avatars:/app/public/user-avatars
+      - ${PWD}/planka/app/public/project-background-images:/app/public/project-background-images
+      - ${PWD}/planka/app/private/attachments:/app/private/attachments
+    ports:
+      ## Port Forward/Translate/Mapping ports from host system to container
+      ## [host-ip-address]:[host-system-port]:[container-port]
+      - 1337:1337
+    environment:
+      - BASE_URL=http://192.168.1.67:1337  # The WebUI Base URL
+      - DATABASE_URL=postgresql://postgres@postgres/planka # The Database connection stream
+      - SECRET_KEY=notsecretkey # Secret Key for communication to the database; generate the secret key using 'openssl rand -hex 64'
+
+      # - TRUST_PROXY=0
+      # - TOKEN_EXPIRES_IN=365 # In days
+
+      # related: https://github.com/knex/knex/issues/2354
+      # As knex does not pass query parameters from the connection string we
+      # have to use environment variables in order to pass the desired values, e.g.
+      # - PGSSLMODE=<value>
+
+      # Configure knex to accept SSL certificates
+      # - KNEX_REJECT_UNAUTHORIZED_SSL_CERTIFICATE=false
+
+      # Default admin user information; Change this before starting up
+      - DEFAULT_ADMIN_EMAIL=demo@demo.demo # Do not remove if you want to prevent this user from being edited/deleted
+      - DEFAULT_ADMIN_PASSWORD=demo
+      - DEFAULT_ADMIN_NAME=Demo Demo
+      - DEFAULT_ADMIN_USERNAME=demo
+
+      # - OIDC_ISSUER=
+      # - OIDC_CLIENT_ID=
+      # - OIDC_CLIENT_SECRET=
+      # - OIDC_SCOPES=openid email profile
+      # - OIDC_ADMIN_ROLES=admin
+      # - OIDC_EMAIL_ATTRIBUTE=email
+      # - OIDC_NAME_ATTRIBUTE=name
+      # - OIDC_USERNAME_ATTRIBUTE=preferred_username
+      # - OIDC_ROLES_ATTRIBUTE=groups
+      # - OIDC_IGNORE_USERNAME=true
+      # - OIDC_IGNORE_ROLES=true
+      # - OIDC_ENFORCED=true
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    # image: postgres:14-alpine
+    image: postgres
+    restart: on-failure
+      # ports:
+      # - "5432:5432"
+    volumes:
+      - ${PWD}/postgresql/data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=planka
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d planka"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+

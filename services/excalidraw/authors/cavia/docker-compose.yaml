@@ -1,0 +1,20 @@
+# docker compose file for
+# Name: Excalidraw
+# Type: Network Diagram and Drawing Tool
+# Architecture: arm64
+# Repository: 
+version: "3.7"
+services:
+  excalidraw:
+    image: cavia/excalidraw:latest
+    container_name: excalidraw
+    restart: unless-stopped
+    ports:
+      ## Port Forwarding/Mapping from host system port to container port
+      ## [ip-address]:[Host-system-port]:[container-port]
+      - 8088:80
+    # volumes:
+      ## Mount volumes from host system into container
+      ## [host-system-volume]:[container-volume]:[permission]
+      
+

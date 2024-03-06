@@ -14,6 +14,9 @@
 Open Source, Virtual Whiteboard + Network Diagram/Drawing tool for sketching hand-drawn diagrams
 ```
 
+### Fork Repositories
++ cavia/excalidraw : For a custom ARM64 build; Behind/Outdated from the official
+
 ## Setup
 ### Dependencies
 + docker

@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  vhs-tty-recorder:
+    image: ghcr.io/charmbracelet/vhs
+    container_name: vhs-tty-recorder
+    # ports:
+      ## Port Forward/Translate/Map from host system to container
+      ## [host-ip-address]:[host-system-port]:[container-port]
+    volumes:
+      ## Mount volumes from host system to container
+      ## [host-system-volume]:[container-volume]:[permissions]
+      - ${PWD}/vhs:/vhs # VHS application directory
+  
+
+

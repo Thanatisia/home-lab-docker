@@ -1,0 +1,32 @@
+version: "3.7"
+services:
+    mongo:
+        # Database Docker compose
+        image: mongo:latest
+        container_name: mongo
+        restart: unless-stopped
+        # Environment Variables here
+        # Uncomment 'environment:' to include the environment variables directly
+        environment:
+            MONGO_INITDB_DATABASE: [database-name]
+            MONGO_INITDB_ROOT_USERNAME: [admin-user-name]
+            MONGO_INITDB_ROOT_PASSWORD: [admin-user-password]
+        # env_file:
+            # Import Environment Variable file
+            # - This will override the 'environment' key
+            # - please place all your environment variables in here
+            # namely:
+            #   - MONGO_INITDB_DATABASE=[database-name]
+            #   - MONGO_INITDB_ROOT_USERNAME=[database-root-username]
+            #   - MONGO_INITDB_ROOT_PASSWORD=[database-root-password]
+            # - "${PWD}/mongo/.env"
+        ports:
+            # Port forwarding/translation between host system and container
+            # - [host system port]:[container port]
+            # Equivalent to docker run's : '-p'
+            # Database Server default port: 27017
+            - "27017:27017"
+        volumes:
+            - "${PWD}/mongo/data/db:/data/db" # Mount MongoDB's default data directory
+            - "${PWD}/etc/mongo:/etc/mongo" # Mount MongoDB's configuration directory
+

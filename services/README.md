@@ -26,6 +26,9 @@ can be used to mix and match with other images as optional dependencies
 - code-server : DevOps, Development utility, Web-based Code Editor
     - author
         + 32-bit : linuxserver
+- dockge : A fancy, easy-to-use and reactive self-hosted docker compose WebUI, stack-oriented, application/service manager made by the creator of Uptime Kuma
+    - author
+        + louislam
 - drawio : Self-hosted implementation of the online UML drawing utility of the same name
     - author
         + jgraph
@@ -35,7 +38,8 @@ can be used to mix and match with other images as optional dependencies
         + linuxserver
 - excalidraw : Network Diagram and Drawing Tool
     - author
-        + excalidraw
+        + excalidraw : Official image; AMD64 only
+        + cavia : Custom ARM64 fork of the official image; outdated
 - file-browser : Utility
 - gitea : Self-hosted Git remote repository hosting service
 - guacamole : Network-based Browser-based Remote Desktop Protocol/utility
@@ -44,9 +48,15 @@ can be used to mix and match with other images as optional dependencies
 - home-assistant : Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts.
     - author
         + home-assistant
+- homepage : A highly customizable homepage (or startpage / application dashboard) Web Application with Docker and service API integrations.
+    - author
+        + gethomepage
 - homer : Dashboard
 - ipsec-vpn-server : VPN Server
 - jellyfin : Media Server
+- jenkins : Continuous Integration and Continuous Delivery (CI/CD) Pipeline automation server
+    - author
+        + jenkins
 - jupyter-base-notebook : aka Jupyter Notebooks; collection of various variant of the python WebUI REPL server; This is the 'base-notebook' image
     - author
         + jupyter
@@ -61,12 +71,19 @@ can be used to mix and match with other images as optional dependencies
 - minecraft-server : Docker image that provides a Minecraft Server that will automatically download selected version at startup
     - author
         + itzg
+- mongodb : MongoDB is a Cross-Platform rich document-oriented NoSQL database and utilizes JSON-like documents with optional schemas.
+    - author
+        + mongo
 - mysql : Database Management System Utility
 - nerd-font-patcher : A font patcher for the Nerd Fonts projects that patches targeted fonts with a high number of Glyph(icon)/Font Icon
 - netbootxyz : A PXE a network boot loader/service that lets you install or boot to any operating system simply by booting to the network
 - Nextcloud : NAS service
 - nginx-proxy-manager : Proxy server, Reverse proxy server
 - nginx-reverse-proxy : Proxy server, Reverse proxy server, Web server
+- nix : The Nix Package Manager is a standalone package manager that uses declarative configuration and containerization to create reproducibility and portability.
+    - author
+        + nixos : Uses BusyBox
+        + nixpkgs : Uses Rootfs
 - nodejs : DevOps, Development utility, web server
 - ntfy.sh : Simple HTTP-based pub-sub notification service that allows you to send push notifications to your phone or desktop using PUT/POST
     - author
@@ -85,10 +102,21 @@ can be used to mix and match with other images as optional dependencies
 - syncthing : Self-hosted file synchronization service
 - tailscale : Tailscale daemon for the tunnel Mesh network VPN service based on Wireguard VPN without the need to port forward
 - unbound : DNS Resolver
+- upsnap : A simple wake on lan web app written with SvelteKit, Go and PocketBase.
+    - author
+        + seriousm4x
 - uptime kuma : Monitoring utility
+    - author
+        + louislam
+- vhs : A screen recorder CLI utility that allows you to create terminal GIFs as code for integration testing and demoing your CLI tools.
+    - author
+        + charmbracelet
 - watchtower : Open Source automated docker container base image updater
     - author
         + containrrr
+- wetty : WeTTY = Web + TTY, WeTTY is a Web Application terminal over HTTP and HTTPS.
+    - author
+        + wettyoss
 - whitebophir : Open Source, Self-hosted Collaborative Whiteboard alternative
     - author
         + lovasoa
@@ -119,6 +147,9 @@ However, on the flipside, this means that if you were to use these services in y
     - author
         + linuxserver
         + solidnerd
+- planka : A realtime kanban board for workgroups built with React and Redux.
+    - author
+        + plankanban
 - tubearchivist : Self-hosted YouTube Media Server with yt-dlp capability
     - author
         + tubearchivist

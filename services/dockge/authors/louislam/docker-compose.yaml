@@ -1,0 +1,29 @@
+# Docker-compose
+version: "3.7"
+services:
+  dockge:
+    image: louislam/dockge:1
+    container_name: dockge
+    restart: unless-stopped
+    environment:
+      ## Environment Variables
+      # Tell Dockge where is your stacks directory
+      - DOCKGE_STACKS_DIR=/opt/stacks
+    ports:
+      ## Port Forward/translate/map from host system port to container port
+      ## [ip-address]:[host-system-port]:[container-port]
+      - "5001:5001" # HTTP WebUI
+    volumes:
+      ## Mount volumes from host system into container
+      ## [host-system-volume]:[container-volume]:[permission]
+      - "${PWD}/dockge/data:/app/data"
+      - "/var/run/docker.sock:/var/run/docker.sock" # Host system docker socket that contains the current state of the docker instances in the host system; Mount into container so the container knows as well
+
+      ### Stacks Directory
+      # ⚠️ READ IT CAREFULLY. If you did it wrong, your data could end up writing into a WRONG PATH.
+      # ⚠️ 1. FULL path only. No relative path (MUST)
+      # ⚠️ 2. Left Stacks Path === Right Stacks Path (MUST)
+      # - "/path/to/docker/container/root/directory:/opt/stacks"
+      - "/opt/stacks:/opt/stacks" 
+
+

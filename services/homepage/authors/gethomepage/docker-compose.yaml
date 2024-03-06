@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    ports:
+      ## Port Forward/translate/map host system port to container port
+      ## [ip-address]:[host-system-port]:[container-port]
+      - "3000:3000"
+    volumes:
+      ## Mount volumes from host system into container
+      ## [host-system-volume]:[container-volume]:[permissions]
+      - "/app/config:/app/config" # Make sure your local config directory exists
+      - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations
+
