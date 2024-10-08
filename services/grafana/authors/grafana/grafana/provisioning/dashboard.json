@@ -1,0 +1,9 @@
+{
+    "dashboard" : {
+        "oid" : "1",
+        "title" : "Home Lab Monitoring",
+        "timezone" : "browser",
+        "panes" : [...],
+        "targets" : ["prometheus:9090"]
+    }
+}

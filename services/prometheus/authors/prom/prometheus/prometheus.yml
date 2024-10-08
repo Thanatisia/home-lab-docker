@@ -1,0 +1,10 @@
+global:
+  scrape_interval: 5s
+  external_labels:
+    monitor: 'node'
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['<your-prometheus-server-host-ip-address>:9090']
+

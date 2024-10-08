@@ -1,0 +1,21 @@
+# Docker compose configuration file for ghcr.io/open-webui/open-webui:main
+version: "3.7"
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    restart: unless-stopped
+    extra_hosts:
+      ## Add extra hosts into the docker container
+      ## [host-name]:[host-ip-address]
+      ## Default: - "host.docker.internal:host-gateway"
+      - "host.docker.internal:[model-host-server-ip-address]"
+    ports:
+      ## Port Forward/Translate/Map from host system port to container port
+      ## [host-system-ip-address]:[host-system-port]:[container-port]
+      - "3000:8080"
+    volumes:
+      ## Mount volumes from host system into container
+      ## [host-system-volume]:[container-volume]:[permissions]
+      - "${PWD}/open-webui:/app/backend/data"
+
