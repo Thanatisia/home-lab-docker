@@ -1,0 +1,16 @@
+# docker-compose for Prometheus
+version: "3.7"
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    restart: unless-stopped
+    ports:
+      ## Port Forward/Translate/Map ports from the host system to container
+      ## [host-ip-address]:[host-system-port]:[container-port]
+      - "9090:9090"
+    volumes:
+      ## Map volumes from the host system into the container
+      ## [host-system-volume]:[container-volume]:[permission]
+      - "${PWD}/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
+

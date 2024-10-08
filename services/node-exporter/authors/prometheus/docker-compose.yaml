@@ -1,0 +1,19 @@
+# docker-compose for node-exporter by Prometheus
+version: "3.8"
+services:
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter
+    restart: unless-stopped
+    network_mode: host
+    pid: host
+    # ports:
+      ## Port Forward/Translate/Map ports from the host system to container
+      ## [host-ip-address]:[host-system-port]:[container-port]
+    volumes:
+      ## Map volumes from the host system into the container
+      ## [host-system-volume]:[container-volume]:[permission]
+      - "/:/host:ro,rslave"
+    command:
+      - '--path.rootfs=/host'
+

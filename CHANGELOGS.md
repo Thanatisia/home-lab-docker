@@ -12,6 +12,7 @@
 + [2024-02-26](#2024-02-26)
 + [2024-02-27](#2024-02-27)
 + [2024-03-04](#2024-03-04)
++ [2024-10-08](#2024-10-08)
 
 ## Logs
 ### 2023-11-23
@@ -111,4 +112,21 @@
 #### 1555H
 - New
     + Added new author for service 'nix' - 'nixpkgs/nix' : Made and community-managed, this uses Rootfs image instead of BusyBox
+
+### 2024-10-08
+#### 2257H
+- New
+    - Added new services
+        + 'grafana/grafana' : Grafana 
+        + 'prom/prometheus' : Prometheus
+        + 'prom/node-exporter' : Node-Exporter
+        + 'registry' : CNCF Docker private remote repository/registry server
+        + 'ollama' : Open Source Local AI Large Language Model Server and Management utility
+        + 'open-webui' : Generic WebUI application used by LLMs to interface/interact with
+        + 'ollama-webui' : WebUI application similar to open-webui but designed specifically for ollama
+- Updates
+    + Updated document 'README.md' in 'services' with the new services 
+    - Updated document 'docker-compose.yaml' in 'services/netbootxyz/authors/netbootxyz/'
+        + Refactored/reorganized docker-compose key-value configuration settings
+        + Added new description
 

@@ -42,6 +42,9 @@ can be used to mix and match with other images as optional dependencies
         + cavia : Custom ARM64 fork of the official image; outdated
 - file-browser : Utility
 - gitea : Self-hosted Git remote repository hosting service
+- grafana : Open Source platform for system monitoring and observability
+    - author
+        + grafana
 - guacamole : Network-based Browser-based Remote Desktop Protocol/utility
 - headscale : Self-hosted master node/server implementation of the tailscale mesh network project
 - heimdall : Dashboard
@@ -84,14 +87,32 @@ can be used to mix and match with other images as optional dependencies
     - author
         + nixos : Uses BusyBox
         + nixpkgs : Uses Rootfs
+- node-exporter : Helper utility like Prometheus for exporting dataset (aka 'nodes') to Prometheus and Grafana for Data Visualization and Analysis
+    - author
+        + prometheus
 - nodejs : DevOps, Development utility, web server
 - ntfy.sh : Simple HTTP-based pub-sub notification service that allows you to send push notifications to your phone or desktop using PUT/POST
     - author
         + binwiederhier
+- ollama : Open Source self-hostable AI Large Language Model (LLM) framework made and maintained by Meta that allows for the management, pulling, pushing and listing of various open source LLM models - for example, Mista - which you can pull and use locally
+    - author
+        + ollama
+- ollama-webui : Generic WebUI (Web interface) for AI models to use as a chatbot; based on the Open-WebUI Web interface but configured specifically for Ollama usage right Out of the Box (OOTB)
+    - author
+        + ollama-webui
+- open-webui : Generic WebUI (Web interface) for AI models to use as a chatbot; This concept is similar to OpenAI using ChatGPT as a web interface to interact with the AI Language Model (Recommended)
+    - author
+        + open-webui
 - phpmyadmin : A widely-used Database Management System WebUI made in php
 - pi-hole : DNS server, DNS sinkhole, Firewall
 - portainer : A Docker container management platform
 - postgresql : Database Management System Utility
+- prometheus : Open Source systems and service monitoring and metrics system
+    - author
+        + prom
+- registry : CNCF Docker private remote repository/registry server
+    - author
+        + registry
 - samba-file-server : File Server
 - searx-ng : Self-hosted free internet metasearch engine which aggregates results from various search engine services and databases
 - scrypted : Self-Hosted Home Hub devices (Ring, Unifi, Google Home etc) management WebUI

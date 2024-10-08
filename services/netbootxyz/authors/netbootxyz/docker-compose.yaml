@@ -5,22 +5,25 @@ services:
     container_name: netbootxyz
     restart: unless-stopped
     environment:
-      ## Set Environment Variables
+      ## Set Environment Variables to passthrough from the host system into the container
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      # - MENU_VERSION=1.9.9 # Optional
+      # - MENU_VERSION=2.0.76 # Optional
       # - PORT_RANGE=30000:30010 # Optional
-      # - SUBFOLDER=/ # Optional
-    volumes:
-      ## Mount volumes from host system into container
-      ## [host-system-volume]:[container-volume]:[permission]
-      - "${PWD}/netbootxyz/config:/config"
-      - "${PWD}/netbootxyz/assets:/assets" # Optional
+      # - SUBFOLDER=/ # Optional; Specify the subfolder URL path
+      # - NGINX_PORT=80 # Optional; Explicitly specify the port number to host the Nginx Reverse Proxy Server
+      # - WEB_APP_PORT=3000 # Optional; Explicitly specify the WebUI/application's port number (Default: 3000)
     ports:
       ## Port Forward/Translate/Map from Host system port to container port
-      ## [ip-address]:[host-system-port]:[container-port]
-      - "3000:3000"
-      - "69:69/udp"
-      - "8080:80" # Optional
+      ## [host-ip-address]:[host-system-port]:[container-port]
+      - "3000:3000" # Netboot.xyz Web Application
+      - "69:69/udp" # TFTP Server (The core of the PXE Boot Server - for serving the IPXE Boot files and menus)
+      - "8080:80" # Nginx Web Server port number
+    volumes:
+      ## Mount volumes from host system into container
+      ## [host-system-volume]:[container-volume]:[permissions]
+      - "${PWD}/netbootxyz/config:/config" # Contains the Netboot.xyz Boot, ISO and Configuration files
+      - "${PWD}/netbootxyz/assets:/assets" # Contains the Netboot.xyz IPXE Boot network assets files
+
 

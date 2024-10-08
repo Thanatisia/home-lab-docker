@@ -1,0 +1,15 @@
+# docker-compose for CNCF Private docker Distribution registry
+version: "3.7"
+services:
+  registry:
+    image: registry:2
+    container_name: "registry"
+    restart: unless-stopped
+    ports:
+      ## Port Forward/Translate/Map port from host system to container
+      ## Syntax: [ip-address]:[host-system-port]:[container-port]
+      - "5000:5000"
+    volumes:
+      - "${PWD}/registry/etc/config.yml:/etc/docker/registry/config.yml"
+      - "${PWD}/registry/var:/var/lib/registry"
+

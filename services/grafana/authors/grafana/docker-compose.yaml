@@ -1,0 +1,17 @@
+# docker-compose for Grafana
+version: "3.7"
+services:
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      ## Port Forward/Translate/Map ports from the host system to container
+      ## [host-ip-address]:[host-system-port]:[container-port]
+      - "3000:3000"
+      - "3457:3457"
+    volumes:
+      ## Map volumes from the host system into the container
+      ## [host-system-volume]:[container-volume]:[permission]
+      - "${PWD}/grafana/provisioning:/etc/grafana/provisioning"
+

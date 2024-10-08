@@ -1,0 +1,28 @@
+# Docker compose configuration file for ollama/ollama with NVIDIA GPU support
+version: "3.7"
+services:
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    restart: unless-stopped
+    ports:
+      ## Port Forward/Translate/Map from host system port to container port
+      ## [host-system-ip-address]:[host-system-port]:[container-port]
+      - 11434:11434
+    volumes:
+      ## Mount volumes from host system into container
+      ## [host-system-volume]:[container-volume]:[permissions]
+      - "${PWD}/ollama:/root/.ollama"
+    devices:
+      ## Passthrough the following devices
+      ## [host-system-device-driver-file]:[container-device-driver-file]
+      - "/dev/dri:/dev/dri"
+    deploy:
+      ## Explicitly define the hardware configuration/specification to deploy/passthrough from the host system into the container
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+

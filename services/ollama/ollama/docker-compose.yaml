@@ -1,0 +1,16 @@
+# Docker compose configuration file for ollama/ollama
+version: "3.7"
+services:
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    restart: unless-stopped
+    ports:
+      ## Port Forward/Translate/Map from host system port to container port
+      ## [host-system-ip-address]:[host-system-port]:[container-port]
+      - 11434:11434
+    volumes:
+      ## Mount volumes from host system into container
+      ## [host-system-volume]:[container-volume]:[permissions]
+      - "${PWD}/ollama:/root/.ollama"
+
