@@ -162,4 +162,9 @@
 - Updates
     + Updated document 'README.md' in 'services' with the new services 
 
+#### 2235H
+- Updates
+    - Updated 'Makefile' in 'Dockerfiles/code-server'
+        + Added new rules/targets for building and starting up the ArchLinux custom base image for code-server
+        + Separated the docker image build processes to individual rules
 
