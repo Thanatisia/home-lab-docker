@@ -1,4 +1,4 @@
-# Setup codercom/code-server Self-Hosted Cloud IDE (VS Code Web application) with appropriate tooling and host system pre-requisites install
+# Self-Hosted Cloud IDE server setup script - Install and setup the system with the required languages/SDK/Framework/appropriate tooling and host system pre-requisites install
 
 ## Initialize Variables
 GO_VERSION=${GO_VERSION:-1.23.2}

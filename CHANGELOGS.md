@@ -168,3 +168,8 @@
         + Added new rules/targets for building and starting up the ArchLinux custom base image for code-server
         + Separated the docker image build processes to individual rules
 
+#### 2246H
+- Updates
+    - Updated script 'setup.sh' in 'services/code-server/linuxserver/scripts'
+        + Changed script header title
+
