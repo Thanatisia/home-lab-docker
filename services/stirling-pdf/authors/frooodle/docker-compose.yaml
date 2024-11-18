@@ -1,0 +1,25 @@
+# docker compose config file for Stirling-PDF
+version: "3.7"
+services:
+  stirling-pdf:
+    image: frooodle/s-pdf:latest
+    container_name: "stirling-pdf"
+    restart: unless-stopped
+    environment:
+      ## Pass Environment Variables into container runtime
+      - DOCKER_ENABLE_SECURITY=false # Enable/Disable downloading of security jar (required for authentication login)
+      - INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false # Download Calibre onto Stirling-PDF to enable PDF to/from book and advanced HTML conversion
+      - LANGS=en_GB # Define custom font libraries to install for document conversions
+    ports:
+      ## Port Forward/Translate/Map host system to container
+      ## [host-system-ip-address]:[host-system-port]:[container-port]
+      - 8080:8080 # HTTP WebUI
+    volumes:
+      ## Mount volume from host system to container
+      ## [host-system-volume]:[container-volume]:[permission]
+      - "${PWD}/stirling-pdf/training-data:/usr/share/tessdata"
+      - "${PWD}/stirling-pdf/extra-configs:/configs"
+      - "${PWD}/stirling-pdf/logs:/logs"
+      ### Optional Customization (Not Required)
+      - "${PWD}/stirling-pdf/custom-files:/customFiles"
+

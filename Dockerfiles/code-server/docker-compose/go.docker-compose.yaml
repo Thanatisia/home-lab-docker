@@ -1,0 +1,46 @@
+# docker compose environment file for linuxserver/code-server : Self-Hosted VS Code WebUI Server
+# Repositories
+# - GitHub:
+#   + https://github.com/coder/code-server
+#   + https://github.com/linuxserver/code-server
+# - DockerHub: https://hub.docker.com/r/linuxserver/code-server
+# Setup
+# - Pre-Requisites
+#   + Create code-server (VSCode) configuration directories "${PWD}/code-server/go/config"
+#   + Create workspace directories "${PWD}/code-server/go/workspace"
+version: "3.7"
+services:
+  go-code-server:
+    image: thanatisia/go-code-server:latest
+    container_name: go-code-server
+    build: 
+      context: .
+      dockerfile: "../Dockerfiles/go.Dockerfile"
+    restart: unless-stopped
+    environment:
+      ## Map Environment Variables into the container
+      ### Server
+      - PUID=${UID:-1000}
+      - PGID=${GID:-1000}
+      - TZ=Etc/UTC
+      - PASSWORD=${PASSWORD} # Optional; Specify the password to access the VS Code instance
+      - HASHED_PASSWORD=${HASHED_PASSWORD:-} # Optional; SHA256 hash hex digest of the password
+      - SUDO_PASSWORD=${SUDO_PASSWORD} # Optional; Specify the sudo password for the container's root user
+      - SUDO_PASSWORD_HASH=${SUDO_PASSWORD_HASH:-} # Optional; SHA256 hash hex digest of the sudo password string
+      - PROXY_DOMAIN=${PROXY_DOMAIN:-code-server.my.domain} # Optional; Specify the Proxy Domain to connect the code server through
+      - DEFAULT_WORKSPACE=${DEFAULT_WORKSPACE:-/config/workspace} # Optional; Specify the path in the container's filesystem tree where the default workspace is located
+      ### Go Environment Variables
+      # - GOROOT=/usr/share/go # Explicitly specify the Go root directory location (Where the Go SDK installation is located)
+      # - GOPATH=$HOME/go
+      # - GOBIN=$HOME/go/bin
+      # - PATH="\$PATH:\$GOROOT/bin:\$GOPATH/bin"
+    ports:
+      ## Port Forward/Translate/Map ports from the host system to the container
+      ## [host-system-ip-address]:[host-system-port]:[container-port]
+      - 8443:8443 # Port Number for WebUI and HTTPS
+    volumes:
+      ## Mount volumes from the host system to the container
+      ## [host-system-volume]:[container-volume]:[permission]
+      - "${PWD}/code-server/go/config:/config" # Mount the code-server configurations directory
+      - "${PWD}/code-server/go/workspace:/config/workspace" # Mount your default workspace directory (set the environment variable 'DEFAULT_WORKSPACE'
+

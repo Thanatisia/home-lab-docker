@@ -1,0 +1,30 @@
+# docker compose environment file for codercom/code-server : Self-Hosted VS Code WebUI Server
+# Repositories
+# - GitHub:
+#   + https://github.com/coder/code-server
+# - DockerHub: https://hub.docker.com/r/codercom/code-server
+version: "3.7"
+services:
+  code-server:
+    image: codercom/code-server:latest
+    container_name: code-server
+    restart: unless-stopped
+    user: coder
+    environment:
+      ## Map Environment Variables into the container
+      - PUID=${UID:-1000}
+      - PGID=${GID:-1000}
+      - DOCKER_USER=$USER # Set the user in the docker container as the current host system user
+      - TZ=Etc/UTC
+    ports:
+      ## Port Forward/Translate/Map ports from the host system to the container
+      ## [host-system-ip-address]:[host-system-port]:[container-port]
+      - 8080:8080 # Port Number for WebUI and HTTP
+    volumes:
+      ## Mount volumes from the host system to the container
+      ## [host-system-volume]:[container-volume]:[permission]
+      - "${PWD}/code-server/dotfiles:/home/coder/.local" # Mount the entire code server directory in the dotfiles directory
+      - "${PWD}/code-server/config:/home/coder/.config" # Mount the code-server configurations directory
+      - "${PWD}/code-server/workspace:/home/coder/project" # Mount your default workspace directory (Default: /home/coder/project)
+      - "${PWD}/scripts/:/home/coder/scripts/" # Mount the setup script for easy access
+

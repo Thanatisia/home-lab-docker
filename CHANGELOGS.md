@@ -13,6 +13,7 @@
 + [2024-02-27](#2024-02-27)
 + [2024-03-04](#2024-03-04)
 + [2024-10-08](#2024-10-08)
++ [2024-11-18](#2024-11-18)
 
 ## Logs
 ### 2023-11-23
@@ -129,4 +130,36 @@
     - Updated document 'docker-compose.yaml' in 'services/netbootxyz/authors/netbootxyz/'
         + Refactored/reorganized docker-compose key-value configuration settings
         + Added new description
+
+### 2024-11-18
+#### 1750H
+- New
+    + Added new document 'README.md' in 'Dockerfiles/
+    - Added new Dockerfile recipe 'cobalt-web' in 'Dockerfiles/'
+        + Added new document 'README.md'
+        + Added new document 'Makefile'
+        - Added new directory 'Dockerfiles/'
+            + Added new Dockerfile file 'alpine.Dockerfile' for locally building a docker image for Self-hosting imputnet's Cobalt Web Application (WebUI) using Alpine as the Base Image
+        - Added new directory 'docker-compose/'
+            + Added new docker-compose file 'alpine.docker-compose.yaml' for locally building a docker image for Self-hosting imputnet's Cobalt Web Application (WebUI) using Alpine as the Base Image and starting up a container
+    - Added new Dockerfile recipe 'code-server' in 'Dockerfiles/'
+        + Added new document 'Makefile'
+        - Added new directory 'Dockerfiles/'
+            + Added new Dockerfile 'arch.Dockerfile' : Dockerfile that builds, installs and starts up code-server using ArchLinux as the base image instead of Ubuntu
+            + Added new Dockerfile 'go.Dockerfile'
+            + Added new Dockerfile 'python.Dockerfile'
+        - Added new directory 'docker-compose/'
+            + Added new docker-compose file 'arch.docker-compose.yaml' for building and starting up the ArchLinux-based code-server (Cloud-based VS Code Server) IDE image
+            + Added new docker-compose file 'go.docker-compose.yaml' for building and starting up the Golang code-server (Cloud-based VS Code Server) IDE
+            + Added new docker-compose file 'python.docker-compose.yaml' for building and starting up the Python code-server (Cloud-based VS Code Server) IDE
+    - Added new services in 'services/'
+        + 'imput-net/cobalt' : Cobalt API that powers the Cobalt Web Application
+        + 'codercom/code-server' : Official code-server docker image by codercom
+        + 'linuxserver/code-server' : code-server docker image maintained by the docker image maintainer group 'linuxserver'
+        + 'coder/coder' : Self-hosted code-server 'Hub' service that assists in streamlining the creation of multiple code-server using various templates
+        + 'x1unix/go-playground' : go-playground alternative made by 'x1-unix' that added features to improve on the original go-playground Web Application
+        + 'frooodle/stirling-pdf' : FOSS Self-hosted PDF manipulation Web Application that enables you to carry out various operations on PDF files or modify other types into PDF
+- Updates
+    + Updated document 'README.md' in 'services' with the new services 
+
 

@@ -23,9 +23,17 @@ can be used to mix and match with other images as optional dependencies
     - author
         + flaresolverr
 - caddy : A powerful, enterprise-ready, open source web/proxy/reverse proxy server alternative to Nginx/Traefik with automatic HTTPS written in Go(lang)
+- cobalt : The core API server for processing wukko's cobalt.tools Web application
+    - authors
+        + imputnet
 - code-server : DevOps, Development utility, Web-based Code Editor
     - author
         + 32-bit : linuxserver
+        + codercom : Official code-server docker image by codercom
+        + linuxserver : code-server docker image maintained by the docker image maintainer group 'linuxserver'; To replace 32-bit
+- coder : Self-hosted code-server 'Hub' service that assists in streamlining the creation of multiple code-server using various templates
+    - author
+        + coder
 - dockge : A fancy, easy-to-use and reactive self-hosted docker compose WebUI, stack-oriented, application/service manager made by the creator of Uptime Kuma
     - author
         + louislam
@@ -42,6 +50,9 @@ can be used to mix and match with other images as optional dependencies
         + cavia : Custom ARM64 fork of the official image; outdated
 - file-browser : Utility
 - gitea : Self-hosted Git remote repository hosting service
+- go-playground : go-playground alternative made by 'x1-unix' that added features to improve on the original go-playground Web Application
+    - author
+        + x1unix
 - grafana : Open Source platform for system monitoring and observability
     - author
         + grafana
@@ -120,6 +131,9 @@ can be used to mix and match with other images as optional dependencies
     - author
         + linuxserver
 - sqlite-web : A WebUI for SQLite
+- stirling-pdf : FOSS Self-hosted PDF manipulation Web Application that enables you to carry out various operations on PDF files or modify other types into PDF
+    - author
+        + frooodle
 - syncthing : Self-hosted file synchronization service
 - tailscale : Tailscale daemon for the tunnel Mesh network VPN service based on Wireguard VPN without the need to port forward
 - unbound : DNS Resolver

@@ -1,0 +1,46 @@
+# docker compose environment file for coder/coder : Self-Hosted VS Code Server for Remote/Cloud-based IDE (Development Environment) Setup
+# Websites: https://coder.com/
+# Docs
+# - https://coder.com/docs
+# - https://coder.com/docs/install
+# - https://coder.com/docs/install/docker
+# Repositories
+# - GitHub: https://github.com/coder/coder
+# - GHCR: https://github.com/coder/coder/pkgs/container/coder
+# Setup
+# - Pre-Requisites
+#   - Set Environment Variables
+#     - CODER_DATA=$HOME/.config/coderv2-docker : Set this to your coder configurations data directory/folder
+#     - DOCKER_GROUP=$(getent group docker | cut -d: -f3) : Set this to your docker group ID
+#     - CODER_ACCESS_URL="[workspaces-ip-address|domain]" : Set this to an accessible workspaces IP Address/domain; This cannot be localhost or 127.0.0.1 for non-docker templates
+version: "3.9"
+services:
+  coder:
+    image: ghcr.io/coder/coder:latest
+    container_name: coder
+    restart: unless-stopped
+    group_add:
+      - ${DOCKER_GROUP} # Docker group ID
+    environment:
+      ## Map Environment Variables into the container
+      # CODER_PG_CONNECTION_URL: "postgresql://${POSTGRES_USER:-username}:${POSTGRES_PASSWORD:-password}@database/${POSTGRES_DB:-coder}?sslmode=disable"
+      CODER_HTTP_ADDRESS: "0.0.0.0:7080" # Define the webserver's HTTP Server IP Address and Port Number
+      # You'll need to set CODER_ACCESS_URL to an IP or domain
+      # that workspaces can reach. This cannot be localhost
+      # or 127.0.0.1 for non-Docker templates!
+      # CODER_ACCESS_URL: "${CODER_ACCESS_URL}"
+    ports:
+      ## Port Forward/Translate/Map ports from the host system to the container
+      ## [host-system-ip-address]:[host-system-port]:[container-port]
+      - 7080:7080 # Port Number for WebUI
+    volumes:
+      ## Mount volumes from the host system to the container
+      ## [host-system-volume]:[container-volume]:[permission]
+      ### Mount your coder .config directory
+      - "${CODER_DATA}:/home/coder/.config"
+      ### Mount your project workspace directories into the container
+      - "${PWD}/go/package-name:/home/coder/"
+      ### Mount your docker socket file
+      - /var/run/docker.sock:/var/run/docker.sock
+
+

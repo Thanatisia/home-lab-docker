@@ -1,0 +1,27 @@
+# docker compose environment file for x1unix/go-playground : Better Go playground powered by Monaco Editor and React
+# Repositories
+# - GitHub: https://github.com/x1unix/go-playground
+# - DockerHub: https://hub.docker.com/r/x1unix/go-playground
+version: "3.7"
+services:
+  go-playground:
+    image: x1unix/go-playground:latest
+    container_name: go-playground
+    restart: unless-stopped
+    environment:
+      ## Map Environment Variables into the container
+      ### Application Data/Cache
+      APP_CLEAN_INTERVAL: '30m'
+      APP_BUILD_DIR: /var/cache/wasm # Specify the path to store cached WebAssembly (wasm) builds
+      ### Web Application data
+      # APP_PLAYGROUND_URL: "https://play.golang.org" # Specify the Go playground service URL
+      ### Go Environment Variables
+      GOROOT: "/usr/local/go" # Explicitly specify the Go root directory location (Where the Go SDK installation is located)
+    ports:
+      ## Port Forward/Translate/Map ports from the host system to the container
+      ## [host-system-ip-address]:[host-system-port]:[container-port]
+      - 8000:8000 # Port Number for WebUI
+    # volumes:
+      ## Mount volumes from the host system to the container
+      ## [host-system-volume]:[container-volume]:[permission]
+

@@ -1,0 +1,34 @@
+# docker compose environment file for linuxserver/code-server : Self-Hosted VS Code WebUI Server
+# Repositories
+# - GitHub:
+#   + https://github.com/coder/code-server
+#   + https://github.com/linuxserver/code-server
+# - DockerHub: https://hub.docker.com/r/linuxserver/code-server
+version: "3.7"
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    restart: unless-stopped
+    environment:
+      ## Map Environment Variables into the container
+      ### Server
+      - PUID=${UID:-1000}
+      - PGID=${GID:-1000}
+      - TZ=Etc/UTC
+      - PASSWORD=${PASSWORD} # Optional; Specify the password to access the VS Code instance
+      - HASHED_PASSWORD=${HASHED_PASSWORD:-} # Optional; SHA256 hash hex digest of the password
+      - SUDO_PASSWORD=${SUDO_PASSWORD} # Optional; Specify the sudo password for the container's root user
+      - SUDO_PASSWORD_HASH=${SUDO_PASSWORD_HASH:-} # Optional; SHA256 hash hex digest of the sudo password string
+      - PROXY_DOMAIN=${PROXY_DOMAIN:-code-server.my.domain} # Optional; Specify the Proxy Domain to connect the code server through
+      - DEFAULT_WORKSPACE=${DEFAULT_WORKSPACE:-/config/workspace} # Optional; Specify the path in the container's filesystem tree where the default workspace is located
+    ports:
+      ## Port Forward/Translate/Map ports from the host system to the container
+      ## [host-system-ip-address]:[host-system-port]:[container-port]
+      - 8443:8443 # Port Number for WebUI and HTTPS
+    volumes:
+      ## Mount volumes from the host system to the container
+      ## [host-system-volume]:[container-volume]:[permission]
+      - "${PWD}/code-server/config:/config" # Mount the code-server configurations directory
+      - "${PWD}/code-server/workspace:/config/workspace" # Mount your default workspace directory (set the environment variable 'DEFAULT_WORKSPACE'
+

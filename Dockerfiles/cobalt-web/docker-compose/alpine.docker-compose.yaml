@@ -1,0 +1,29 @@
+# docker compose environment file for building imputnet/cobalt's WebUI docker image from scratch
+# Repositories
+# - GitHub:
+#   + https://github.com/imputnet/cobalt
+# Setup
+# - Pre-Requisites
+#   + Startup the imputnet/cobalt API server
+version: "3.7"
+services:
+  go-code-server:
+    image: thanatisia/alpine-cobalt-web
+    container_name: alpine-cobalt-web
+    build: 
+      context: .
+      dockerfile: "../Dockerfiles/alpine.Dockerfile"
+    restart: unless-stopped
+    environment:
+      ## Map Environment Variables into the container
+      ### Server
+      WEB_DEFAULT_API: "http://127.0.0.1:9000"
+    ports:
+      ## Port Forward/Translate/Map ports from the host system to the container
+      ## [host-system-ip-address]:[host-system-port]:[container-port]
+      - 5173:5173 # Port Number for WebUI and HTTPS
+    # volumes:
+      ## Mount volumes from the host system to the container
+      ## [host-system-volume]:[container-volume]:[permission]
+
+
